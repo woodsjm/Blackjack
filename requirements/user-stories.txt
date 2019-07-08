@@ -1,0 +1,48 @@
+****				   ****
+	BLACKJACK GAME SITE
+****                   ****
+
+
+**HOME PAGE**
+
+-As a site visitor, I want to see images, text, and general styling reminiscient of the interior of a casino, so that I feel like I am gambling at a casino.
+
+-As a site visitor, I want to see an introductory screen inviting me to play with a button that I can click to start the game, so I can choose whether or not I will be playing(Blackjack).
+
+-As an instructor, I want to see an introductory page that includes styling and decoration which require a solid understanding of HTML and CSS to implement, so I can gauge the progress of the student designer.
+
+-As a recruiter, I want to see an introductory page that includes sytling and decoration which require a solid understanding of HTML and CSS to implement, so I can judge the potential value of the student designer.
+
+**GAME (Blackjack)**
+
+As a site visitor:
+
+-If I just started a new game, I will see text that says "Place Your Bets", the amount of money I have bet is at $0 (and is displayed in the center of the screen), as well as a stack of chips (in amounts of hundred, five hundred, and thousand) below a button labeled "Deal Cards". 
+
+-As a site visitor, I can see the chips I am holding, so I can I can more easily strategize.
+
+- If a site visitor clicks on any of the chips, then a chip of the relevant value is moved from the stack and into the center of the screen.
+ 
+- If site visitor clicks on the button labeled "Deal Cards", then the following should happen:
+	(1) The screen changes such that the text showing the amount bet is still visible but is smaller and is positioned off to the top-left of the screen.
+	(2) The "Deal Cards" button and label is removed from the screen
+	(3) Two cards (face-down) are moved to the center and top of the screen
+	(4) Two cards (face-up) are moved to right below the direct center of the screen
+	(5) Two "Hit" or "Stand" buttons are moved to same area as where the "Deal Cards" button was located.
+
+-To move 'forward' in the game, the "Deal Cards" button has to be clicked   
+
+-As a site visitor, after I am dealt two cards, I can choose whether to play my current cards by clicking the "Stand" button or deal another card by clicking the "Hit" button
+
+-If site visitor clicks "Hit", then a new card (face-up) appears to the right of the two cards I currently have (turned face-up) on the screen.
+
+-Site visitor can continue clicking "Hit", each click will make a new card (turned face-up) appear to the right of the previous card that was dealt after a previous click of the button "Hit", unless the value of the hand exceeds 21.
+
+-If value of hand exceeds 21, then site visitor is automatically taken to a page that has text at the top saying "Sorry, you lost $" and the numeric value of the money lost on that hand placed beside and to the right of the "$". An image of the casino below this text and a button with text inside saying "Play Again?" placed right below the image.
+
+-If site visitor presses "Stand", then the dealer's cards are turned face-up and:
+	-If the site visitor's hand value is higher than dealer's hand, the site visitor is taken to a is automatically taken to a page that has text at the top saying "Congrats! you won $" and the numeric value of the money won on that hand placed beside and to the right of the "$" and an "!" placed to the right of this numeric value. An image of the casino appears below this text and a button with text inside saying "Play Again?" placed right below the image.
+
+	-If the site visitor's hand value is lower than dealer's hand, the site visitor is automatically taken to a page that has text at the top saying "Sorry, you lost $" and the numeric value of the money lost on that hand placed beside and to the right of the "$". An image of the casino below this text and a button with text inside saying "Play Again?" placed right below the image. 
+
+	
