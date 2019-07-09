@@ -19,6 +19,45 @@ class Computer extends Player {
 
 
 const cards = {
+	cardPack: [{
+		name: "2 of Diamonds", 
+		rank: 2, 
+		url: ""
+	}, {
+		name: "3 of Diamonds", 
+		rank: 3, 
+		url: ""
+	}, {
+		name: "4 of Diamonds", 
+		rank: 4, 
+		url:""
+	}, {
+		name: "5 of Diamonds", 
+		rank: 5, 
+		url:""
+	}, {
+		name: "6 of Diamonds", 
+		rank: 6, 
+		url:""
+	}],
+	deck: [],
+	populate () {
+		for (let i = 0; i < this.cardPack.length; i++) {
+			this.deck.push(this.cardPack[i]);
+		}
+	},
+	clearDeck () {
+		this.deck = [];
+		//console.log(cards.deck);
+	}
+}
+
+/*cards.populate();
+console.log(cards.deck);
+cards.clearDeck();
+console.log(cards.deck);*/
+
+/*const cards = {
 	deck: [],
 	populate () {
 		const suit = ['Diamonds', 'Hearts'];
@@ -33,7 +72,7 @@ const cards = {
 		this.deck = [];
 		//console.log(cards.deck);
 	}
-}
+}*/
 
 
 
