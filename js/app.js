@@ -86,6 +86,7 @@ game.dealCards();
 console.log(game.player.hand);
 console.log(game.computer.hand);
 game.player.clearHand();
+game.computer.clearHand();
 console.log(game.player.hand);
 console.log(game.computer.hand);
 
