@@ -1,116 +1,257 @@
 console.log("Blackjack Started");
 
 
-class Player {
+
+
+const cards = {
+	deck: [],
+	populate () {
+		const suit = ['Diamonds', 'Hearts'];
+		const rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
+		for (let i = 0; i < suit.length; i++) {
+			for (let j = 0; j < rank.length; j++) {
+				this.deck.push(suit[i] + rank[j]);
+			}
+		}
+	}
+}
+
+
+cards.populate();
+
+console.log(cards.deck);
+
+
+/*const deck = [];
+
+const suit = ['Diamonds', 'Hearts'];
+const rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
+for (let i = 0; i < suit.length; i++) {
+	for (let j = 0; j < rank.length; j++) {
+		deck.push(suit[i] + rank[j]);
+	}
+}
+
+	
+console.log(deck);*/
+
+/*class Player {
 	constructor() {
-		this.name = name;
-		this.cardsPlayed = [];
 		this.hand = [];
 	}
+	clear() {
 
-	// Calculate value of cards in hand, return value, and empty cards in hand
-	/*playCard() {
-		for (let i = 0; i < this.hand.length; i++) {
-
-		}
-	}*/
+	}
 }
+
+
 
 class Computer extends Player {
 
-	// Calculate value of cards in hand, return value, and empty cards in hand
-	/*playCard() {
-		const 
-	}*/
+	clear() { 
+	}
 }
 
 
 
 const game = {
 	cards: [{
-		name: "Queen of Hearts",
-		value: 10
+		suit: "Diamonds",
+		rank: 1,
+		image: undefined
 	}, {
-		name: "2 of Diamonds",
-		value: 2
+		suit: "Diamonds",
+		rank: 2,
+		image: undefined
 	}, {
-		name: "Ace of Diamonds",
-		value: 1
+		suit: "Diamonds",
+		rank: 3,
+		image: undefined
 	}, {
-		name: "Jack of Diamonds",
-		value: 10
+		suit: "Diamonds",
+		rank: 4,
+		image: undefined
 	}, {
-		name: "King of Diamonds",
-		value: 10
+		suit: "Diamonds",
+		rank: 5,
+		image: undefined
 	}, {
-		name: "3 of Diamonds",
-		value: 3
+		suit: "Diamonds",
+		rank: 6,
+		image: undefined
 	}, {
-		name: "4 of Diamonds",
-		value: 4
+		suit: "Diamonds",
+		rank: 7,
+		image: undefined
 	}, {
-		name: "5 of Diamonds",
-		value: 5
+		suit: "Diamonds",
+		rank: 8,
+		image: undefined
 	}, {
-		name: "6 of Diamonds",
-		value: 6
+		suit: "Diamonds",
+		rank: 10,
+		image: undefined
 	}, {
-		name: "7 of Diamonds",
-		value: 7
+		suit: "Diamonds",
+		rank: 10,
+		image: undefined
 	}, {
-		name: "8 of Diamonds",
-		value: 8
+		suit: "Diamonds",
+		rank: 10,
+		image: undefined
 	}, {
-		name: "9 of Diamonds",
-		value: 9
+		suit: "Diamonds",
+		rank: 10,
+		image: undefined
 	}, {
-		name: "10 of Diamonds",
-		value: 10
-	}
+		suit: "Hearts",
+		rank: 1,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 2,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 3,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 4,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 5,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 6,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 7,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 8,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 9,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 10,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 10,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 10,
+		image: undefined
+	}, {
+		suit: "Hearts",
+		rank: 10,
+		image: undefined
+	},  
 	],
 
-	computerScore: 0, 
-	playerScore: 0,
+	computerScore = 0,
+	playerScore = 0,
 
 	computer: null,
 	player: null,
+	cards: null,
 
 	createPlayer() {
-		const newPlayer = new Player();
-		this.player = newPlayer;
-		console.log(this.player);
-	},
-	createComputer() {
-		const newDealer = new Computer();
-		this.computer = newDealer;
-		console.log(this.computer);
+ 		const newPlayer = new Player();
+ 		this.player = newPlayer;
+ 		console.log(this.player);
+ 	},
 
-	},
+ 	createComputer() {
+ 		const newDealer = new Computer();
+ 		this.computer = newDealer;
+ 		console.log(this.computer);
+ 	},
+
+ 	createDeck () {
+ 		const newDeck = new Cards();
+ 		this.
+ 	}
 
 	dealCards() {
-		for (let i = 0; i < 2; i++) {
+ 		for (let i = 0; i < 2; i++) {
 			const cardIndexPlayer = Math.floor(Math.random() * this.cards.length);
-			this.player.hand.push(this.removeCard(cardIndexPlayer));
+ 			this.player.hand.push(this.removeCard(cardIndexPlayer));
 
 			const cardIndexComputer = Math.floor(Math.random() * this.cards.length);
-			this.computer.hand.push(this.removeCard(CardIndexComputer));
-		}
-	},
+ 			this.computer.hand.push(this.removeCard(cardIndexComputer));
+ 		}
+ 	},
+
+ 	showCards() {
+ 		this.dealCards();
+ 		console.log(this.player);
+ 		console.log(this.computer);
+ 	}
+}*/
 
 
-	removeCard(cardIndex) {
-		const cardArray = this.cards.splice(cardIndex, 1);
-		return cardArray[0]
-	}
-}
 
 
 
-game.createPlayer();
-game.createComputer();
-game.dealCards();
-console.log(game.player.hand);
-console.log(game.computer.hand);
+
+// // 	computerScore: 0, 
+// // 	playerScore: 0,
+
+// // 	computer: null,
+// // 	player: null,
+// // 	cards: null,
+/*
+ 	createPlayer() {
+ 		const newPlayer = new Player();
+ 		this.player = newPlayer;
+ 		console.log(this.player);
+ 	},
+ 	createComputer() {
+ 		const newDealer = new Computer();
+ 		this.computer = newDealer;
+ 		console.log(this.computer);
+
+// // 	},
+// // 	createCards() {
+// // 		const newCards = new Cards();
+// // 		this.cards = newCards;
+// // 		console.log(this.cards);
+// // 	}
+
+ 	dealCards() {
+ 		for (let i = 0; i < 2; i++) {
+			const cardIndexPlayer = Math.floor(Math.random() * this.cards.length);
+ 			this.player.hand.push(this.removeCard(cardIndexPlayer));
+
+			const cardIndexComputer = Math.floor(Math.random() * this.cards.length);
+ 			this.computer.hand.push(this.removeCard(cardIndexComputer));
+ 		}
+ 	},*/
+
+
+// 	removeCard(cardIndex) {
+// 		const cardArray = this.cards.splice(cardIndex, 1);
+// 		return cardArray[0]
+// 	}
+// }
+
+
+
+// game.createPlayer();
+// game.createComputer();
+// game.dealCards();
+// console.log(game.player.hand);
+// console.log(game.computer.hand);*
 
 
 
