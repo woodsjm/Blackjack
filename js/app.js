@@ -5,9 +5,13 @@ console.log("Blackjack Started");
 class Player {
 	constructor() {
 		this.hand = [];
+		this.value = 0
 	}
 	clearHand() {
 		this.hand = [];
+	}
+	clearHandValue() {
+		this.value = 0;
 	}
 }
 
@@ -22,7 +26,7 @@ const cards = {
 	// pack of cards
 	cardPack: [{
 		name: "Ace of Diamonds", 
-		rank: 1, 
+		rank: 11, 
 		url: ""
 	}, {
 		name: "2 of Diamonds", 
@@ -89,8 +93,8 @@ const cards = {
 
 const game = {
 
-	computerScore: 0,
-	playerScore: 0,
+	// computerHandValue: 0,
+	// playerHandValue: 0,
 
 	computer: null,
 	player: null,
@@ -114,21 +118,47 @@ const game = {
 
 			const cardIndexComputer = Math.floor(Math.random() * cards.deck.length);
  			this.computer.hand.push(this.removeCard(cardIndexComputer));
+ 		// game.play();
  		}
  	},
+ 	/*play() {
+ 		if 
+ 	},*/
+ 	// deal one extra card to player
  	hitPlayer() {
  		const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
  		this.player.hand.push(this.removeCard(cardIndexPlayer));
  	},
+ 	playerHandValue() {
+		let sum = 0;
+		let aceExists = false;
+		let total = 0;
+        for (let i = 0; i < cards.length; i++) {
+        	sum += cards[i]['rank'];
+        	if (cards[i]['name'] === "Ace of Diamonds" || cards[i]['name'] === "Ace of Hearts" || cards[i]['name'] === "Ace of Spades" || cards[i]['name'] === "Ace of Clubs") {
+    			aceExists = true;
+  			}
+		}
+		let softHand = 0;
+		let hardHand = 0;
+		if (aceExists) {
+  			softHand = sum + 10;
+		} else {
+  			hardHand = sum;
+		}
+	},
+ 	// removes a card from the deck and places it in hand
  	removeCard(cardIndex) {
  		const [ cardArray ] = cards.deck.splice(cardIndex, 1);
  		return cardArray
  	},
+ 	// reveal cards in hand
  	showCards() {
  		this.dealCards();
  		console.log(this.player);
  		console.log(this.computer);
  	},
+ 	// initialize Player and Computer
  	startGame() {
  		game.createPlayer();
  		game.createComputer();
@@ -137,12 +167,22 @@ const game = {
 
 
 
+
+
 game.startGame();
 game.dealCards();
-game.hitPlayer();
+
+$('#hit').on('click', () => {
+	console.log('hit is working');
+	game.hitPlayer();
+});
+
+
 console.log(game.player.hand);
 console.log(game.computer.hand);
-game.player.clearHand();
+console.log(game.player.value);
+console.log(game.player.value);
+/*game.player.clearHand();
 game.computer.clearHand();
 console.log(game.player.hand);
-console.log(game.computer.hand);
+console.log(game.computer.hand);*/
