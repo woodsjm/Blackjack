@@ -1,8 +1,29 @@
 console.log("Blackjack Started");
 
+class Cards {
+	constructor() {
+		this.deck = []
+		this.values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,]
+	}
+	createDeck() {
+		const suit = ["Diamonds", "Hearts", "Clubs", "Spades"];
+		const rank = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+		for (let i = 0; i < suit.length; i++) {
+			for (let j = 0; j < rank.length; j++) {
+				this.deck.push(suit[i] + rank[j]);
+			}
+		}
+	}
+	createCardValues() {
+		for 
+	}
+}
 
+const newDeck = new Cards();
+newDeck.createDeck();
+console.log(newDeck);	
 
-class Player {
+/*class Player {
 	constructor() {
 		this.hand = [];
 		this.value = 0
@@ -26,7 +47,7 @@ const cards = {
 	// pack of cards
 	cardPack: [{
 		name: "Ace of Diamonds", 
-		rank: 11, 
+		rank: 1, 
 		url: ""
 	}, {
 		name: "2 of Diamonds", 
@@ -120,22 +141,27 @@ const game = {
  			this.computer.hand.push(this.removeCard(cardIndexComputer));
  		// game.play();
  		}
- 	},
+ 	},*/
  	/*play() {
  		if 
- 	},*/
+ 	},
  	// deal one extra card to player
  	hitPlayer() {
  		const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
  		this.player.hand.push(this.removeCard(cardIndexPlayer));
  	},
+ 	stand() {
+ 		// Play current cards
+ 	},
  	playerHandValue() {
 		let sum = 0;
 		let aceExists = false;
 		let total = 0;
-        for (let i = 0; i < cards.length; i++) {
-        	sum += cards[i]['rank'];
-        	if (cards[i]['name'] === "Ace of Diamonds" || cards[i]['name'] === "Ace of Hearts" || cards[i]['name'] === "Ace of Spades" || cards[i]['name'] === "Ace of Clubs") {
+        for (let i = 0; i < this.player.hand.length; i++) {
+        	sum += game.player.hand[i]['rank'];
+        	if (game.player.hand['name'] === "Ace of Diamonds" || game.player.hand[i]['name'] === "Ace of Hearts" 
+        		|| game.player.hand[i]['name'] === "Ace of Spades" || game.player.hand[i]['name'] === "Ace of Clubs") {
+        		// if there is an ace change aceExists to true
     			aceExists = true;
   			}
 		}
@@ -152,6 +178,7 @@ const game = {
  		const [ cardArray ] = cards.deck.splice(cardIndex, 1);
  		return cardArray
  	},
+ 	
  	// reveal cards in hand
  	showCards() {
  		this.dealCards();
@@ -181,7 +208,7 @@ $('#hit').on('click', () => {
 console.log(game.player.hand);
 console.log(game.computer.hand);
 console.log(game.player.value);
-console.log(game.player.value);
+console.log(game.player.value);*/
 /*game.player.clearHand();
 game.computer.clearHand();
 console.log(game.player.hand);
