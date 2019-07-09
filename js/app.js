@@ -14,39 +14,26 @@ const cards = {
 			}
 		}
 	},
+	removeCard () {
+
+
+	},
 	clearDeck () {
 		this.deck = [];
+		console.log(cards.deck);
 	}
 }
-
 
 cards.populate();
 
-console.log(cards.deck);
-
-cards.clearDeck();
-
-console.log(cards.deck);
 
 
-/*const deck = [];
 
-const suit = ['Diamonds', 'Hearts'];
-const rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
-for (let i = 0; i < suit.length; i++) {
-	for (let j = 0; j < rank.length; j++) {
-		deck.push(suit[i] + rank[j]);
-	}
-}
-
-	
-console.log(deck);*/
-
-/*class Player {
+class Player {
 	constructor() {
 		this.hand = [];
 	}
-	clear() {
+	clearHand() {
 
 	}
 }
@@ -55,122 +42,19 @@ console.log(deck);*/
 
 class Computer extends Player {
 
-	clear() { 
+	clearHand() { 
 	}
 }
 
 
 
 const game = {
-	cards: [{
-		suit: "Diamonds",
-		rank: 1,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 2,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 3,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 4,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 5,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 6,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 7,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 8,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 10,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 10,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 10,
-		image: undefined
-	}, {
-		suit: "Diamonds",
-		rank: 10,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 1,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 2,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 3,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 4,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 5,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 6,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 7,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 8,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 9,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 10,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 10,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 10,
-		image: undefined
-	}, {
-		suit: "Hearts",
-		rank: 10,
-		image: undefined
-	},  
-	],
 
-	computerScore = 0,
-	playerScore = 0,
+	computerScore: 0,
+	playerScore: 0,
 
 	computer: null,
 	player: null,
-	cards: null,
 
 	createPlayer() {
  		const newPlayer = new Player();
@@ -181,42 +65,40 @@ const game = {
  	createComputer() {
  		const newDealer = new Computer();
  		this.computer = newDealer;
- 		console.log(this.computer);
  	},
 
- 	createDeck () {
+ 	/*createDeck () {
  		const newDeck = new Cards();
  		this.
- 	}
+ 	}*/
 
 	dealCards() {
- 		for (let i = 0; i < 2; i++) {
-			const cardIndexPlayer = Math.floor(Math.random() * this.cards.length);
+ 		for (let i = 0; i < 3; i++) {
+			const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
  			this.player.hand.push(this.removeCard(cardIndexPlayer));
 
-			const cardIndexComputer = Math.floor(Math.random() * this.cards.length);
+			const cardIndexComputer = Math.floor(Math.random() * cards.deck.length);
  			this.computer.hand.push(this.removeCard(cardIndexComputer));
  		}
  	},
-
+ 	removeCard(cardIndex) {
+ 		const [ cardArray ] = cards.deck.splice(cardIndex, 1);
+ 		return cardArray
+ 	},
  	showCards() {
  		this.dealCards();
  		console.log(this.player);
  		console.log(this.computer);
  	}
-}*/
+}
+
+game.createPlayer();
+game.createComputer();
+game.dealCards();
+console.log(game.player.hand);
 
 
 
-
-
-
-// // 	computerScore: 0, 
-// // 	playerScore: 0,
-
-// // 	computer: null,
-// // 	player: null,
-// // 	cards: null,
 /*
  	createPlayer() {
  		const newPlayer = new Player();
@@ -228,12 +110,12 @@ const game = {
  		this.computer = newDealer;
  		console.log(this.computer);
 
-// // 	},
-// // 	createCards() {
-// // 		const newCards = new Cards();
-// // 		this.cards = newCards;
-// // 		console.log(this.cards);
-// // 	}
+ 	},
+	createCards() {
+ 		const newCards = new Cards();
+ 		this.cards = newCards;
+ 		console.log(this.cards);
+ 	}
 
  	dealCards() {
  		for (let i = 0; i < 2; i++) {
@@ -243,39 +125,37 @@ const game = {
 			const cardIndexComputer = Math.floor(Math.random() * this.cards.length);
  			this.computer.hand.push(this.removeCard(cardIndexComputer));
  		}
- 	},*/
+ 	},
 
 
-// 	removeCard(cardIndex) {
-// 		const cardArray = this.cards.splice(cardIndex, 1);
-// 		return cardArray[0]
-// 	}
-// }
-
-
-
-// game.createPlayer();
-// game.createComputer();
-// game.dealCards();
-// console.log(game.player.hand);
-// console.log(game.computer.hand);*
+ 	removeCard(cardIndex) {
+ 		const cardArray = this.cards.splice(cardIndex, 1);
+ 		return cardArray[0]
+ 	}
+ }
 
 
 
-
-	//Store cards
+ game.createPlayer();
+ game.createComputer();
+ game.dealCards();
+ console.log(game.player.hand);
+ console.log(game.computer.hand);*
 
 
 
 
-	//Show cards
+	Store cards
 
 
 
 
-	//Play cards against each other (Player vs Computer)
+	Show cards
+
+
+	Play cards against each other (Player vs Computer)
 
 
 
 
-	//Remove all cards from hand
+	Remove all cards from hand*/
