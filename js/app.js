@@ -15,10 +15,7 @@ const cards = {
 		}
 	},
 	clearDeck () {
-		while (this.deck.length >= 0) {
-			this.deck.pop();
-		}
-
+		this.deck = [];
 	}
 }
 
