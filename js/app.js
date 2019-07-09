@@ -1,26 +1,6 @@
 console.log("Blackjack Started");
 
 
-const cards = {
-	deck: [],
-	populate () {
-		const suit = ['Diamonds', 'Hearts'];
-		const rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
-		for (let i = 0; i < suit.length; i++) {
-			for (let j = 0; j < rank.length; j++) {
-				this.deck.push(suit[i] + rank[j]);
-			}
-		}
-	},
-	removeCard () {
-
-
-	},
-	clearDeck () {
-		this.deck = [];
-		console.log(cards.deck);
-	}
-}
 
 class Player {
 	constructor() {
@@ -35,6 +15,24 @@ class Player {
 
 class Computer extends Player {
 
+}
+
+
+const cards = {
+	deck: [],
+	populate () {
+		const suit = ['Diamonds', 'Hearts'];
+		const rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
+		for (let i = 0; i < suit.length; i++) {
+			for (let j = 0; j < rank.length; j++) {
+				this.deck.push(suit[i] + rank[j]);
+			}
+		}
+	},
+	clearDeck () {
+		this.deck = [];
+		//console.log(cards.deck);
+	}
 }
 
 
@@ -67,6 +65,10 @@ const game = {
  			this.computer.hand.push(this.removeCard(cardIndexComputer));
  		}
  	},
+ 	hitPlayer() {
+ 		const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
+ 		this.player.hand.push(this.removeCard(cardIndexPlayer));
+ 	},
  	removeCard(cardIndex) {
  		const [ cardArray ] = cards.deck.splice(cardIndex, 1);
  		return cardArray
@@ -83,6 +85,7 @@ cards.populate();
 game.createPlayer();
 game.createComputer();
 game.dealCards();
+game.hitPlayer();
 console.log(game.player.hand);
 console.log(game.computer.hand);
 game.player.clearHand();
