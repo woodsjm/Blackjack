@@ -1,8 +1,6 @@
 console.log("Blackjack Started");
 
 
-
-
 const cards = {
 	deck: [],
 	populate () {
@@ -24,17 +22,12 @@ const cards = {
 	}
 }
 
-cards.populate();
-
-
-
-
 class Player {
 	constructor() {
 		this.hand = [];
 	}
 	clearHand() {
-
+		this.hand = [];
 	}
 }
 
@@ -42,8 +35,6 @@ class Player {
 
 class Computer extends Player {
 
-	clearHand() { 
-	}
 }
 
 
@@ -67,11 +58,6 @@ const game = {
  		this.computer = newDealer;
  	},
 
- 	/*createDeck () {
- 		const newDeck = new Cards();
- 		this.
- 	}*/
-
 	dealCards() {
  		for (let i = 0; i < 3; i++) {
 			const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
@@ -92,11 +78,16 @@ const game = {
  	}
 }
 
+
+cards.populate();
 game.createPlayer();
 game.createComputer();
 game.dealCards();
 console.log(game.player.hand);
-
+console.log(game.computer.hand);
+game.player.clearHand();
+console.log(game.player.hand);
+console.log(game.computer.hand);
 
 
 /*
