@@ -2,7 +2,13 @@ body {
 	background-color: #006400;
 }
 
-img {
+.card {
 	width: 200px;
 	height: 330px;
 }
+
+div {
+	display: flex;
+	justify-content: center;
+}
+
