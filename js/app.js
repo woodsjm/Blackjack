@@ -107,6 +107,7 @@ const game = {
  	},
 
 	dealCards() {
+		cards.populate();
  		for (let i = 0; i < 3; i++) {
 			const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
  			this.player.hand.push(this.removeCard(cardIndexPlayer));
@@ -135,7 +136,7 @@ const game = {
 }
 
 
-cards.populate();
+
 game.startGame();
 game.dealCards();
 game.hitPlayer();
