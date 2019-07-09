@@ -13,11 +13,21 @@ const cards = {
 				this.deck.push(suit[i] + rank[j]);
 			}
 		}
+	},
+	clearDeck () {
+		while (this.deck.length >= 0) {
+			this.deck.pop();
+		}
+
 	}
 }
 
 
 cards.populate();
+
+console.log(cards.deck);
+
+cards.clearDeck();
 
 console.log(cards.deck);
 
