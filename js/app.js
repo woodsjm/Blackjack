@@ -115,6 +115,8 @@ class Game {
 			console.log('player won');
 		} else if (this.player.value > this.dealer.value) {
 			console.log('player won');
+		} else if (this.dealer.value > this.player.value) {
+			console.log('dealer wins');
 		} else if (this.player.value === this.dealer.value) {
 			console.log('tie!');
 		}
