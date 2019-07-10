@@ -3,33 +3,76 @@ console.log("Blackjack Started");
 class Cards {
 	constructor() {
 		this.deck = []
-		this.values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,]
+
 	}
 	createDeck() {
-		const suit = ["Diamonds", "Hearts", "Clubs", "Spades"];
-		const rank = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
+		const suits = ["Diamonds", "Hearts", "Clubs", "Spades"];
+		const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
+		const names = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queens', 'King'];
 		for (let i = 0; i < suit.length; i++) {
-			for (let j = 0; j < rank.length; j++) {
-				this.deck.push(suit[i] + rank[j]);
+			for (let j = 0; j < values.length; j++) {
+				// 52 card objects with 3 keys (suit, value, and name)
+				this.deck.push({ suit: suits[i], value: values[j], name: names[j] });
 			}
 		}
+	}
+	clearDeck() {
+		this.deck = [];
+		//console.log(cards.deck);
+	}
+	dealCard() {
+		const cardIndex = Math.floor(Math.random() * this.deck.length);
+		const removedCard = this.deck.splice(cardIndex, 1);
+		return removedCard;
+
 	}
 }
 
 
+
+//const rank = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
 
 class Player {
 	constructor() {
 		this.hand = [];
 		this.value = 0
 	}
-	clearHand() {
+	resetPlayer() {
 		this.hand = [];
-	}
-	clearHandValue() {
 		this.value = 0;
 	}
+
+	getCard(card) {
+		this.hand.push(card);
+	}
+
+	checkValueOfHand() {
+		let sum = 0;
+		let aceExists = false;
+		let total = 0;
+		for (let i = 0; i < this.hand.length; i++) {
+			sum += this.hand[i]['value'];
+			if (this.hand[i].name === "Ace") {
+				// if there is an ace change aceExists to true
+				aceExists = true;
+			}
+		}
+		let softHand = 0;
+		let hardHand = 0;
+		if (aceExists) {
+			softHand = sum + 10;
+		} else {
+			hardHand = sum;
+		}
+	}
+
+
+
+
+
 }
+
+
 
 
 
@@ -38,21 +81,7 @@ class Computer extends Player {
 }
 
 
-const cards = {
-	// pack of cards
-	deck: [],
-	// create playing deck
-	populate() {
-		for (let i = 0; i < this.cardPack.length; i++) {
-			this.deck.push(this.cardPack[i]);
-		}
-	},
-	// empty the playing deck
-	clearDeck() {
-		this.deck = [];
-		//console.log(cards.deck);
-	}
-}
+
 
 const game = {
 
@@ -92,26 +121,7 @@ const game = {
 	stand() {
 		// Play current cards
 	},
-	playerHandValue() {
-		let sum = 0;
-		let aceExists = false;
-		let total = 0;
-		for (let i = 0; i < this.player.hand.length; i++) {
-			sum += game.player.hand[i]['rank'];
-			if (game.player.hand['name'] === "Ace of Diamonds" || game.player.hand[i]['name'] === "Ace of Hearts"
-				|| game.player.hand[i]['name'] === "Ace of Spades" || game.player.hand[i]['name'] === "Ace of Clubs") {
-				// if there is an ace change aceExists to true
-				aceExists = true;
-			}
-		}
-		let softHand = 0;
-		let hardHand = 0;
-		if (aceExists) {
-			softHand = sum + 10;
-		} else {
-			hardHand = sum;
-		}
-	},
+
 	// removes a card from the deck and places it in hand
 	removeCard(cardIndex) {
 		const [cardArray] = cards.deck.splice(cardIndex, 1);
