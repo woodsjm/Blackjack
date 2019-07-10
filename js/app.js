@@ -92,7 +92,7 @@ class Game {
 	hit() {
 		//give player an additional card
 		this.player.getCard(this.deck.dealCard());
-		console.log('value', this.player.value);
+		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
 			console.log("Player Loses");
 			// if player/computer value equal
@@ -111,10 +111,12 @@ class Game {
 		}
 		if (this.dealer.value > 21) {
 			console.log('player won');
-		}
-		// comparre hands logic
-		if (this.player.value > this.dealer.value) {
-			
+		} else if (this.player.value === 21 && this.dealer.value !== 21) {
+			console.log('player won');
+		} else if (this.player.value > this.dealer.value) {
+			console.log('player won');
+		} else if (this.player.value === this.dealer.value) {
+			console.log('tie!');
 		}
 	}
 }
