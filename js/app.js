@@ -93,7 +93,8 @@ class Game {
 		this.player.getCard(this.deck.dealCard());
 		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
-			console.log("PLAYER LOSES");
+			console.log("player LOST");
+			this.clearTable();
 		} else if (this.player.value === 21) {
 			this.checkHands();
 		} 
@@ -104,7 +105,6 @@ class Game {
 		}
 		this.checkHands();
 	}
-
 	stand() {
 		if (this.player.value === this.dealer.value) {
 			this.checkHands();
@@ -125,26 +125,39 @@ class Game {
 	}
 	checkHands() {
 		if (this.dealer.value > 21) {
-			console.log('player won');
+			console.log('player WON');
+			this.clearTable();
 		} else if (this.player.value === 21 && this.dealer.value !== 21) {
-			console.log('player won');
+			console.log('player WON');
+			this.clearTable();
 		} else if (this.player.value > this.dealer.value) {
 			this.dealerHits();
-			console.log('player won');
+			console.log('player WON');
+			this.clearTable();
 		} else if (this.dealer.value > this.player.value) {
-			console.log('dealer wins');
+			console.log('dealer WINS');
+			this.clearTable();
 		} else if (this.player.value === this.dealer.value) {
-			console.log('Tie, but dealer still wins!');
+			console.log('Tie, but dealer still WINS!');
+			this.clearTable();
 		}
 	}
 	checkHandsAtStart() {
 		if (this.player.value === 21 && this.dealer.value === 21) {
-			console.log("Tie! Both have Blackjacks! Take chips back"); 
+			console.log("Tie! Both have Blackjacks! Take chips back");
+			this.clearTable(); 
 		} else if (this.dealer.value === 21) {
-			console.log("Dealer Wins After First Deal");
+			console.log("Dealer WINS After First Deal");
+			this.clearTable();
 		} else if (this.player.value === 21) {
-			console.log("PLAYER Wins After First Deal");
+			console.log("PLAYER WON After First Deal");
+			this.clearTable();
 		}
+	}
+	clearTable() {
+		this.player.resetPlayer();
+		this.dealer.resetPlayer();
+		this.deck.clearDeck();
 	}
 }
 
@@ -208,8 +221,10 @@ class Game {
 	}
 } */
 
-console.log("am i crazy")
+console.log("am i crazy");
+
 const game = new Game();
+
 $('#hit').on('click', () => {
 	game.hit();
 	console.log(game.player.hand);
@@ -218,6 +233,7 @@ $('#hit').on('click', () => {
 	game.dealer.hand.forEach(c => console.log(c))
 	console.log("dealer:",game.dealer.calculateValueOfHand())
 });
+
 $('#play').on('click', () => {
 	game.play();
 	console.log(game.deck);
@@ -226,6 +242,7 @@ $('#play').on('click', () => {
 	game.dealer.hand.forEach(c => console.log(c))
 	console.log("dealer:",game.dealer.calculateValueOfHand())
 });
+
 $('#stand').on('click', () => { 
 	console.log('stand');
 	game.stand();
@@ -233,5 +250,5 @@ $('#stand').on('click', () => {
 	console.log("player:",game.player.calculateValueOfHand())
 	game.dealer.hand.forEach(c => console.log(c))
 	console.log("dealer:",game.dealer.calculateValueOfHand())
-})
+});
 
