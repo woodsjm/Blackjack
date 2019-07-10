@@ -45,13 +45,20 @@ class Player {
 		this.calculateValueOfHand();
 	}
 	calculateValueOfHand() {
-		let sum = 0;
 		let aceExists = false;
-		let total = 0;
-		//need to merge sum and total
+		let sum = 0;
 		for (let i = 0; i < this.hand.length; i++) {
-	
+			sum += this.hand[i].value;
+			if (this.hand[i].name === "Ace") {
+				// if true flip boole
+				aceExists = true;
+			}
 		}
+		if (aceExists && sum < 12) {
+				sum += 10;
+		}
+		this.value = sum;
+		console.log(this.value);
 	}
 }
 
@@ -83,6 +90,7 @@ class Game {
 
 	hit() {
 		//give player an additional card
+		this.player.getCard(this.deck.dealCard());
 	}
 
 	stay() {
