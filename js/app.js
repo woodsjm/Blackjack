@@ -58,7 +58,7 @@ class Player {
 				sum += 10;
 		}
 		this.value = sum;
-		console.log(this.value);
+		// console.log(this.value);
 		return this.value
 	}
 }
@@ -88,7 +88,7 @@ class Game {
 		this.player.getCard(this.deck.dealCard());
 		this.dealer.getCard(this.deck.dealCard());
 		this.dealer.getCard(this.deck.dealCard());
-		game.checkHandsAtStart();
+		this.checkHandsAtStart();
 	}
 
 	hit() {
@@ -96,30 +96,38 @@ class Game {
 		this.player.getCard(this.deck.dealCard());
 		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
-			console.log("Player Loses");
-			// if player/computer value equal
-
-			// if player value lower than 21
+			console.log("PLAYER LOSES");
+		} else if (this.player.value === 21) {
+			this.checkHands();
+		} 
+	}
+	dealerHits() {
+		while (this.dealer.value < 21 && this.dealer.value < this.player.value) {
+			this.dealer.getCard(this.deck.dealCard());
 		}
+		this.checkHands();
 	}
 
 	stand() {
-		// play current cards
-		if (this.dealer.value < 16) {
-			while (this.dealer.value < 16) {
+		if (this.dealer.value < 18) {
+			while (this.dealer.value < 18) {
 				this.dealer.getCard(this.deck.dealCard());
 				console.log('dealer hand value after card dealt: ', this.dealer.value);
 			}
 		}
-		if (this.dealer.value > 16 && this.dealer.value < this.player.value)
-		this.checkHandsAfterStand();
+		if (this.dealer.value > 16 && this.dealer.value < this.player.value) {
+			this.checkHands();
+		} else if (this.dealer.value > 16 && this.dealer.value > this.player.value) {
+			this.checkHands();
+		}
 	}
-	checkHandsAfterStand () {
+	checkHands() {
 		if (this.dealer.value > 21) {
 			console.log('player won');
 		} else if (this.player.value === 21 && this.dealer.value !== 21) {
 			console.log('player won');
 		} else if (this.player.value > this.dealer.value) {
+			this.dealerHits();
 			console.log('player won');
 		} else if (this.dealer.value > this.player.value) {
 			console.log('dealer wins');
@@ -129,7 +137,7 @@ class Game {
 	}
 	checkHandsAtStart() {
 		if (this.player.value === 21 && this.dealer.value === 21) {
-			console.log("Tie! Both have Blackjacks!"); 
+			console.log("Tie! Both have Blackjacks! Take chips back"); 
 		} else if (this.dealer.value === 21) {
 			console.log("Dealer Wins After First Deal");
 		} else if (this.player.value === 21) {
