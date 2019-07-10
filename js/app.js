@@ -94,11 +94,23 @@ class Game {
 		console.log('value', this.player.value);
 		if (this.player.value > 21) {
 			console.log("Player Loses");
+			// if player/computer value equal
+
+			// if player value lower than 21
 		}
 	}
 
 	stand() {
 		// play current cards
+		if (this.dealer.value < 16) {
+			while (this.dealer.value < 16) {
+				this.dealer.getCard(this.deck.dealCard());
+				console.log('dealer hand value after card dealt: ', this.dealer.value);
+			}
+		}
+		if (this.dealer.value > 21) {
+			console.log('player won');
+		}
 	}
 }
 
