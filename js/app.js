@@ -3,7 +3,6 @@ console.log("Blackjack Started");
 class Deck {
 	constructor() {
 		this.deck = []
-
 	}
 	createDeck() {
 		const suits = ["Diamonds", "Hearts", "Clubs", "Spades"];
@@ -15,27 +14,20 @@ class Deck {
 				// 52 card objects with 3 keys (suit, value, and name)
 				// and need to make name and suits line up so img location can
 				// be added
-				this.deck.push({ suit: suits[i], value: values[j], name: names[j], imgUrl: names[j] + suits[i][0] + '.png' }); // 
+				this.deck.push({ suit: suits[i], value: values[j], name: names[j], imgUrl: names[j] + suits[i][0] + '.png' });  
 			}
 		}
 	}
 	clearDeck() {
+		// set deck to an empty deck
 		this.deck = [];
-		//console.log(cards.deck);
 	}
 	dealCard() {
 		const cardIndex = Math.floor(Math.random() * this.deck.length);
 		const [removedCard] = this.deck.splice(cardIndex, 1);
 		return removedCard;
-
 	}
 }
-
-
-
-
-
-//const rank = ["A", 2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K"];
 
 class Player {
 	constructor() {
@@ -46,12 +38,12 @@ class Player {
 		this.hand = [];
 		this.value = 0;
 	}
-
-	getCard() {
-		this.hand.push();
+	getCard(card) {
+		// move random card from initalized Deck class and
+		// push it into Player or Dealer hand
+		this.hand.push(card);
 		this.calculateValueOfHand();
 	}
-
 	calculateValueOfHand() {
 		let sum = 0;
 		let aceExists = false;
@@ -68,6 +60,8 @@ class Player {
 
 
 class Dealer extends Player {
+	// dealer inherits two properties and three methods from
+	// Player class
 
 }
 
@@ -80,6 +74,11 @@ class Game {
 
 	play() {
 		// start play
+		this.deck.createDeck();
+		this.player.getCard(this.deck.dealCard());
+		this.player.getCard(this.deck.dealCard());
+		this.dealer.getCard(this.deck.dealCard());
+		this.dealer.getCard(this.deck.dealCard());
 	}
 
 	hit() {
@@ -157,6 +156,13 @@ const game = new Game();
 $('#hit').on('click', () => {
 	game.hit();
 });
+$('#play').on('click', () => {
+	game.play();
+	console.log(game.deck);
+	console.log(game.player);
+	console.log(game.dealer);
+})
+
 
 /* console.log(game.player.hand);
 console.log(game.computer.hand);
