@@ -93,7 +93,7 @@ class Game {
 		this.player.getCard(this.deck.dealCard());
 	}
 
-	stay() {
+	stand() {
 		// play current cards
 	}
 }
@@ -169,8 +169,11 @@ $('#play').on('click', () => {
 	console.log(game.deck);
 	console.log(game.player);
 	console.log(game.dealer);
-})
-
+});
+$('#stand').on('click', () => { 
+	console.log('stand');
+	game.stand();
+});
 
 /* console.log(game.player.hand);
 console.log(game.computer.hand);
