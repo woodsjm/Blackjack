@@ -35,7 +35,7 @@ class Cards {
 class Player {
 	constructor() {
 		this.hand = [];
-		this.value = 0
+		this.value = 0;
 	}
 	resetPlayer() {
 		this.hand = [];
@@ -47,29 +47,21 @@ class Player {
 	}
 
 	checkValueOfHand() {
-		let sum = 0;
+
 		let aceExists = false;
-		let total = 0;
+
 		for (let i = 0; i < this.hand.length; i++) {
-			sum += this.hand[i]['value'];
+			this.value += this.hand[i].value;
 			if (this.hand[i].name === "Ace") {
 				// if there is an ace change aceExists to true
 				aceExists = true;
 			}
 		}
-		let softHand = 0;
-		let hardHand = 0;
-		if (aceExists) {
-			softHand = sum + 10;
-		} else {
-			hardHand = sum;
+
+		if (aceExists && this.value < 12) {
+			this.value += 10;
 		}
 	}
-
-
-
-
-
 }
 
 
@@ -81,7 +73,9 @@ class Computer extends Player {
 }
 
 
+function game() {
 
+}
 
 const game = {
 
