@@ -58,7 +58,8 @@ class Player {
 				sum += 10;
 		}
 		this.value = sum;
-		//console.log(this.value);
+		console.log(this.value);
+		return this.value
 	}
 }
 
@@ -83,10 +84,11 @@ class Game {
 		// start play
 		this.deck.createDeck();
 		this.player.getCard(this.deck.dealCard());
-		$('#player-hand').append(`img src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+		// $('#player-hand').append(`img src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		this.player.getCard(this.deck.dealCard());
 		this.dealer.getCard(this.deck.dealCard());
 		this.dealer.getCard(this.deck.dealCard());
+		game.checkHandsAtStart();
 	}
 
 	hit() {
@@ -119,6 +121,15 @@ class Game {
 			console.log('dealer wins');
 		} else if (this.player.value === this.dealer.value) {
 			console.log('tie!');
+		}
+	}
+	checkHandsAtStart() {
+		if (this.player.value === 21 && this.dealer.value === 21) {
+			console.log("Tie! Both have Blackjacks!"); 
+		} else if (this.dealer.value === 21) {
+			console.log("Dealer Wins After First Deal");
+		} else if (this.player.value === 21) {
+			console.log("PLAYER Wins After First Deal");
 		}
 	}
 }
@@ -183,22 +194,35 @@ class Game {
 	}
 } */
 
-
-
+console.log("am i crazy")
 const game = new Game();
 $('#hit').on('click', () => {
 	game.hit();
+	console.log(game.player.hand);
+	game.player.hand.forEach(c => console.log(c))
+	console.log("player:",game.player.calculateValueOfHand())
+	game.dealer.hand.forEach(c => console.log(c))
+	console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 $('#play').on('click', () => {
 	game.play();
 	console.log(game.deck);
-	console.log(game.player);
-	console.log(game.dealer);
+	game.player.hand.forEach(c => console.log(c))
+	console.log("player:",game.player.calculateValueOfHand())
+	game.dealer.hand.forEach(c => console.log(c))
+	console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 $('#stand').on('click', () => { 
 	console.log('stand');
 	game.stand();
-});
+	game.player.hand.forEach(c => console.log(c))
+	console.log("player:",game.player.calculateValueOfHand())
+	game.dealer.hand.forEach(c => console.log(c))
+	console.log("dealer:",game.dealer.calculateValueOfHand())
+})
+
+
+
 
 /* console.log(game.player.hand);
 console.log(game.computer.hand);
