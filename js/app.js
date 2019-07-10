@@ -91,6 +91,10 @@ class Game {
 	hit() {
 		//give player an additional card
 		this.player.getCard(this.deck.dealCard());
+		console.log('value', this.player.value);
+		if (this.player.value > 21) {
+			console.log("Player Loses");
+		}
 	}
 
 	stand() {
