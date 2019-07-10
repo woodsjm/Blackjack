@@ -111,6 +111,10 @@ class Game {
 		if (this.dealer.value > 21) {
 			console.log('player won');
 		}
+		// comparre hands logic
+		if (this.player.value > this.dealer.value) {
+			
+		}
 	}
 }
 
