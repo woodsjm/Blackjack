@@ -111,6 +111,10 @@ class Game {
 				console.log('dealer hand value after card dealt: ', this.dealer.value);
 			}
 		}
+		if (this.dealer.value > 16 && this.dealer.value < this.player.value)
+		this.checkHandsAfterStand();
+	}
+	checkHandsAfterStand () {
 		if (this.dealer.value > 21) {
 			console.log('player won');
 		} else if (this.player.value === 21 && this.dealer.value !== 21) {
@@ -120,7 +124,7 @@ class Game {
 		} else if (this.dealer.value > this.player.value) {
 			console.log('dealer wins');
 		} else if (this.player.value === this.dealer.value) {
-			console.log('tie!');
+			console.log('Tie, but dealer still wins!');
 		}
 	}
 	checkHandsAtStart() {
