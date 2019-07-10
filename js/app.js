@@ -14,7 +14,7 @@ class Deck {
 				// 52 card objects with 3 keys (suit, value, and name)
 				// and need to make name and suits line up so img location can
 				// be added
-				this.deck.push({ suit: suits[i], value: values[j], name: names[j], imgUrl: names[j] + suits[i][0] + '.png' });  
+				this.deck.push({ suit: suits[i], value: values[j], name: names[j], url: names[j] + suits[i][0] + '.png' });  
 			}
 		}
 	}
@@ -58,7 +58,7 @@ class Player {
 				sum += 10;
 		}
 		this.value = sum;
-		console.log(this.value);
+		//console.log(this.value);
 	}
 }
 
@@ -83,6 +83,7 @@ class Game {
 		// start play
 		this.deck.createDeck();
 		this.player.getCard(this.deck.dealCard());
+		$('#player-hand').append(`img src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		this.player.getCard(this.deck.dealCard());
 		this.dealer.getCard(this.deck.dealCard());
 		this.dealer.getCard(this.deck.dealCard());
