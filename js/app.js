@@ -64,9 +64,6 @@ class Player {
 }
 
 
-
-
-
 class Dealer extends Player {
 	// dealer inherits two properties and three methods from
 	// Player class
@@ -109,6 +106,11 @@ class Game {
 	}
 
 	stand() {
+		if (this.player.value === this.dealer.value) {
+			this.checkHands();
+		} else if (this.player.value < this.dealer.value) {
+			this.checkHands();
+		}
 		if (this.dealer.value < 18) {
 			while (this.dealer.value < 18) {
 				this.dealer.getCard(this.deck.dealCard());
@@ -233,14 +235,3 @@ $('#stand').on('click', () => {
 	console.log("dealer:",game.dealer.calculateValueOfHand())
 })
 
-
-
-
-/* console.log(game.player.hand);
-console.log(game.computer.hand);
-console.log(game.player.value);
-console.log(game.player.value);
-game.player.clearHand();
-game.computer.clearHand();
-console.log(game.player.hand);
-console.log(game.computer.hand); */
