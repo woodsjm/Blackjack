@@ -1,6 +1,6 @@
 console.log("Blackjack Started");
 
-class Cards {
+class Deck {
 	constructor() {
 		this.deck = []
 
@@ -9,10 +9,13 @@ class Cards {
 		const suits = ["Diamonds", "Hearts", "Clubs", "Spades"];
 		const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 		const names = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queens', 'King'];
-		for (let i = 0; i < suit.length; i++) {
+		//console.log(this.deck)
+		for (let i = 0; i < suits.length; i++) {
 			for (let j = 0; j < values.length; j++) {
 				// 52 card objects with 3 keys (suit, value, and name)
-				this.deck.push({ suit: suits[i], value: values[j], name: names[j] });
+				// and need to make name and suits line up so img location can
+				// be added
+				this.deck.push({ suit: suits[i], value: values[j], name: names[j], imgUrl: names[j] + suits[i][0] + '.png' }); // 
 			}
 		}
 	}
@@ -22,11 +25,13 @@ class Cards {
 	}
 	dealCard() {
 		const cardIndex = Math.floor(Math.random() * this.deck.length);
-		const removedCard = this.deck.splice(cardIndex, 1);
+		const [removedCard] = this.deck.splice(cardIndex, 1);
 		return removedCard;
 
 	}
 }
+
+
 
 
 
@@ -42,24 +47,18 @@ class Player {
 		this.value = 0;
 	}
 
-	getCard(card) {
-		this.hand.push(card);
+	getCard() {
+		this.hand.push();
+		this.calculateValueOfHand();
 	}
 
-	checkValueOfHand() {
-
+	calculateValueOfHand() {
+		let sum = 0;
 		let aceExists = false;
-
+		let total = 0;
+		//need to merge sum and total
 		for (let i = 0; i < this.hand.length; i++) {
-			this.value += this.hand[i].value;
-			if (this.hand[i].name === "Ace") {
-				// if there is an ace change aceExists to true
-				aceExists = true;
-			}
-		}
-
-		if (aceExists && this.value < 12) {
-			this.value += 10;
+	
 		}
 	}
 }
@@ -68,16 +67,33 @@ class Player {
 
 
 
-class Computer extends Player {
+class Dealer extends Player {
 
 }
 
+class Game {
+	constructor() {
+		this.player = new Player();
+		this.dealer = new Dealer();
+		this.deck = new Deck();
+	}
 
-function game() {
+	play() {
+		// start play
+	}
 
+	hit() {
+		//give player an additional card
+	}
+
+	stay() {
+		// play current cards
+	}
 }
 
-const game = {
+// }
+
+/* const game = {
 
 	// computerHandValue: 0,
 	// playerHandValue: 0,
@@ -133,26 +149,20 @@ const game = {
 		game.createPlayer();
 		game.createComputer();
 	}
-}
+} */
 
 
 
-
-
-game.startGame();
-game.dealCards();
-
+const game = new Game();
 $('#hit').on('click', () => {
-	console.log('hit is working');
-	game.hitPlayer();
+	game.hit();
 });
 
-
-console.log(game.player.hand);
+/* console.log(game.player.hand);
 console.log(game.computer.hand);
 console.log(game.player.value);
 console.log(game.player.value);
 game.player.clearHand();
 game.computer.clearHand();
 console.log(game.player.hand);
-console.log(game.computer.hand);
+console.log(game.computer.hand); */
