@@ -112,6 +112,7 @@ class Game {
 	hit() {
 		//give player an additional card
 		this.player.getCard(this.deck.dealCard());
+		$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
 			console.log("player LOST");
@@ -123,6 +124,7 @@ class Game {
 	dealerHits() {
 		while (this.dealer.value < 21 && this.dealer.value < this.player.value) {
 			this.dealer.getCard(this.deck.dealCard());
+			$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		}
 		this.checkHands();
 	}
