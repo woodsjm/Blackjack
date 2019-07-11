@@ -251,12 +251,13 @@ const removeFirstPage = () => {
 }
 
 const createBetsPage = () => {
-	const betsHeader = $("<div/>")
+	$('#bets-page').css("display", "flex");
 }
 
 
 $('#play-blackjack').on('click', () => {
 	removeFirstPage();
+	createBetsPage();
 });
 
 $('#hit').on('click', () => {
