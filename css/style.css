@@ -13,6 +13,8 @@ body {
     z-index:1000;
 }
 
+/* ----HOME PAGE---- */
+
 #home-page {
 	display: block;
 }
@@ -38,13 +40,12 @@ body {
 
 }
 
-
 #casino-image {
 	max-height: 300px;
 	max-width: 300px;
 }
 
-/* Place Bets Page */
+/* ----PLACE BETS PAGE---- */
 
 #bets-page {
 	display: block;
@@ -55,7 +56,25 @@ body {
 	justify-content: center;
 }
 
-/* Hit or Stand Page */
+
+	/* -Div for deal button- */
+
+#deal-cards {
+	display: flex;
+	justify-content: center;
+}
+
+	/* -Deal Button- */
+
+#deal {
+	color: black;
+	margin: 2px 2px;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	background: rgb(255, 215, 0);
+}
+
+/* ----HIT OR STAND PAGE----*/
 
 #hit-or-stand-page {
 	display: none;
@@ -77,8 +96,20 @@ body {
 	justify-content: center;
 }
 
+	/* -Div for Hit and Stand buttons- */
+
+#hit-or-stand {
+	display: flex;
+	justify-content: center;
+}
+
+
+
+	/* -Buttons for Hit and Stand- */
+
 #hit {
 	color: black;
+	margin: 2px 2px;
 	border-radius: 4px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 	background: rgb(255, 215, 0);
@@ -86,6 +117,7 @@ body {
 
 #stand {
 	color: black;
+	margin: 2px 2px;
 	border-radius: 4px;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 	background: rgb(255, 215, 0);
