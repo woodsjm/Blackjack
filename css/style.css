@@ -8,10 +8,6 @@ body {
 	height: 330px;
 }
 
-div {
-	display: flex;
-	justify-content: center;
-}
 
 .new-game {
 	color: black;
@@ -19,6 +15,25 @@ div {
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 	background: rgb(255, 215, 0);
 }
+
+.first-and-last-pages-title {
+	display: flex;
+	justify-content: center;
+
+}
+
+.first-and-last-pages-img {
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	min-height: 300px;
+}
+
+#casino-image {
+	max-height: 300px;
+	max-width: 300px;
+}
+
 
 
 
