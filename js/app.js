@@ -1,5 +1,11 @@
 console.log("Blackjack Started");
 
+class Stakes {
+	this.pot = 0;
+}
+
+
+
 class Deck {
 	constructor() {
 		this.deck = []
@@ -33,6 +39,7 @@ class Player {
 	constructor() {
 		this.hand = [];
 		this.value = 0;
+		this.money = 10000;
 	}
 	resetPlayer() {
 		this.hand = [];
@@ -42,6 +49,7 @@ class Player {
 		// move random card from initalized Deck class and
 		// push it into Player or Dealer hand
 		this.hand.push(card);
+		// handle aces
 		this.calculateValueOfHand();
 	}
 	calculateValueOfHand() {
@@ -69,6 +77,7 @@ class Dealer extends Player {
 	// Player class
 
 }
+
 
 class Game {
 	constructor() {
@@ -111,8 +120,8 @@ class Game {
 		} else if (this.player.value < this.dealer.value) {
 			this.checkHands();
 		}
-		if (this.dealer.value < 18) {
-			while (this.dealer.value < 18) {
+		if (this.dealer.value < 17) {
+			while (this.dealer.value < 17) {
 				this.dealer.getCard(this.deck.dealCard());
 				console.log('dealer hand value after card dealt: ', this.dealer.value);
 			}
