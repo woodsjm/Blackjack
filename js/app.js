@@ -62,7 +62,6 @@ class Player {
 				sum += 10;
 		}
 		this.value = sum;
-		game.checkHandsAtStart();
 		// console.log(this.value);
 		return this.value
 	}
@@ -99,10 +98,13 @@ class Game {
 			//start play
 			this.deck.createDeck();
 			this.player.getCard(this.deck.dealCard());
-			// $('#player-hand').append(`img src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+			$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 			this.player.getCard(this.deck.dealCard());
+			$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 			this.dealer.getCard(this.deck.dealCard());
+			$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 			this.dealer.getCard(this.deck.dealCard());
+			$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 			this.checkHandsAtStart();
 		}
 	}
