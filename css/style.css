@@ -3,6 +3,14 @@ body {
 	font-family: Arvo, serif;
 }
 
+#blackjack {
+	display: flex;
+	justify-content: center;
+	min-height: 50px;
+	min-width: 50px;
+}
+
+
 .card {
 	width: 200px;
 	height: 330px;
@@ -16,27 +24,15 @@ body {
 	background: rgb(255, 215, 0);
 }
 
-.first-and-last-pages-title {
+.first-page {
 	display: flex;
 	justify-content: center;
 
 }
 
-.first-and-last-pages-img {
-	display: flex;
-	justify-content: center;
-	align-items: flex-end;
-	min-height: 300px;
-}
 
 #casino-image {
 	max-height: 300px;
 	max-width: 300px;
 }
-
-
-
-
-
-
 

@@ -90,7 +90,7 @@ class Game {
 		this.bet = new Bet();
 	}
 
-	play() {
+	deal() {
 		// partially controls the functionality of the deal cards button
 		if (this.bet.round) {
 			this.bet.round = false;
@@ -239,9 +239,25 @@ class Game {
 	}
 } */
 
-console.log("am i crazy");
 
 const game = new Game();
+
+const removeFirstPage = () => {
+	$('#play-blackjack').hide();
+	$('#casino-image').hide();
+	$('#blackjack').hide();
+	$('.first-page').hide();
+	$('#first-title').hide();
+}
+
+const createBetsPage = () => {
+	const betsHeader = $("<div/>")
+}
+
+
+$('#play-blackjack').on('click', () => {
+	removeFirstPage();
+});
 
 $('#hit').on('click', () => {
 	game.hit();
@@ -252,9 +268,9 @@ $('#hit').on('click', () => {
 	console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 
-$('#play').on('click', () => {
-	$('#play').hide(500)
-	game.play();
+$('#deal').on('click', () => {
+	$('#deal').hide(500)
+	game.deal();
 	console.log(game.deck);
 	game.player.hand.forEach(c => console.log(c))
 	console.log("player:",game.player.calculateValueOfHand())
