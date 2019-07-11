@@ -1,10 +1,5 @@
 console.log("Blackjack Started");
 
-class Stakes {
-	this.pot = 0;
-}
-
-
 
 class Deck {
 	constructor() {
@@ -78,23 +73,36 @@ class Dealer extends Player {
 
 }
 
+class Bet {
+	constructor () {
+		this.pot = 0;
+		this.round = true;
+	}
+}
+
+
 
 class Game {
 	constructor() {
 		this.player = new Player();
 		this.dealer = new Dealer();
 		this.deck = new Deck();
+		this.bet = new Bet();
 	}
 
 	play() {
-		// start play
-		this.deck.createDeck();
-		this.player.getCard(this.deck.dealCard());
-		// $('#player-hand').append(`img src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
-		this.player.getCard(this.deck.dealCard());
-		this.dealer.getCard(this.deck.dealCard());
-		this.dealer.getCard(this.deck.dealCard());
-		this.checkHandsAtStart();
+		// partially controls the functionality of the deal cards button
+		if (this.bet.round) {
+			this.bet.round = false;
+			//start play
+			this.deck.createDeck();
+			this.player.getCard(this.deck.dealCard());
+			// $('#player-hand').append(`img src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+			this.player.getCard(this.deck.dealCard());
+			this.dealer.getCard(this.deck.dealCard());
+			this.dealer.getCard(this.deck.dealCard());
+			this.checkHandsAtStart();
+		}
 	}
 
 	hit() {
@@ -167,6 +175,7 @@ class Game {
 		this.player.resetPlayer();
 		this.dealer.resetPlayer();
 		this.deck.clearDeck();
+		this.bet.round = true;
 	}
 }
 
