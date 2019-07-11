@@ -34,11 +34,12 @@ class Player {
 	constructor() {
 		this.hand = [];
 		this.value = 0;
-		this.money = 10000;
+		this.wins = 0;
 	}
 	resetPlayer() {
 		this.hand = [];
 		this.value = 0;
+		this.wins = 0;
 	}
 	getCard(card) {
 		// move random card from initalized Deck class and
@@ -64,6 +65,9 @@ class Player {
 		this.value = sum;
 		// console.log(this.value);
 		return this.value
+	}
+	addWin() {
+		this.wins += 1;
 	}
 }
 
@@ -106,6 +110,7 @@ class Game {
 		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
 			console.log("player LOST");
+			this.dealer.addWin();
 			this.clearTable();
 		} else if (this.player.value === 21) {
 			this.checkHands();
@@ -119,9 +124,7 @@ class Game {
 		this.checkHands();
 	}
 	stand() {
-		if (this.player.value === this.dealer.value) {
-			this.checkHands();
-		} else if (this.player.value < this.dealer.value) {
+		if (this.player.value <= this.dealer.value) {
 			this.checkHands();
 		}
 		if (this.dealer.value < 17) {
@@ -139,19 +142,24 @@ class Game {
 	checkHands() {
 		if (this.dealer.value > 21) {
 			console.log('player WON');
+			this.player.addWin();
 			this.clearTable();
 		} else if (this.player.value === 21 && this.dealer.value !== 21) {
 			console.log('player WON');
+			this.player.addWin();
 			this.clearTable();
 		} else if (this.player.value > this.dealer.value) {
 			//POSSIBLE BUG--- this.dealerHits();
 			console.log('player WON');
+			this.player.addWin();
 			this.clearTable();
 		} else if (this.dealer.value > this.player.value) {
-			console.log('dealer WINS');
+			console.log('dealer WON');
+			this.dealer.addWin();
 			this.clearTable();
 		} else if (this.player.value === this.dealer.value) {
 			console.log('Tie, but dealer still WINS!');
+			this.dealer.addWin();
 			this.clearTable();
 		}
 	}
@@ -161,94 +169,34 @@ class Game {
 			this.clearTable(); 
 		} else if (this.dealer.value === 21) {
 			console.log("Dealer WINS After First Deal");
+			this.dealer.addWin();
 			this.clearTable();
 		} else if (this.player.value === 21) {
 			console.log("PLAYER WON After First Deal");
+			this.player.addWin();
 			this.clearTable();
 		}
 	}
 	clearTable() {
 		flipDealersFirstCard();
-		this.player.resetPlayer();
-		this.dealer.resetPlayer();
-		this.deck.clearDeck();
+		//this.player.resetPlayer();
+		//this.dealer.resetPlayer();
+		//this.deck.clearDeck();
 	}
 }
 
-// }
-
-/* const game = {
-
-	// computerHandValue: 0,
-	// playerHandValue: 0,
-
-	computer: null,
-	player: null,
-
-	createPlayer() {
-		const newPlayer = new Player();
-		this.player = newPlayer;
-		console.log(this.player);
-	},
-
-	createComputer() {
-		const newDealer = new Computer();
-		this.computer = newDealer;
-	},
-
-	dealCards() {
-		cards.populate();
-		for (let i = 0; i < 3; i++) {
-			const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
-			this.player.hand.push(this.removeCard(cardIndexPlayer));
-
-			const cardIndexComputer = Math.floor(Math.random() * cards.deck.length);
-			this.computer.hand.push(this.removeCard(cardIndexComputer));
-			// game.play();
-		}
-	},
-	// deal one extra card to player
-	hitPlayer() {
-		const cardIndexPlayer = Math.floor(Math.random() * cards.deck.length);
-		this.player.hand.push(this.removeCard(cardIndexPlayer));
-	},
-	stand() {
-		// Play current cards
-	},
-
-	// removes a card from the deck and places it in hand
-	removeCard(cardIndex) {
-		const [cardArray] = cards.deck.splice(cardIndex, 1);
-		return cardArray
-	},
-
-	// reveal cards in hand
-	showCards() {
-		this.dealCards();
-		console.log(this.player);
-		console.log(this.computer);
-	},
-	// initialize Player and Computer
-	startGame() {
-		game.createPlayer();
-		game.createComputer();
-	}
-} */
-
-
+// New game initialized
 const game = new Game();
 
+// Page IDs stored in an array
+const pagesArray = ["#home-page", "#bets-page", 
+"#hit-or-stand-page", "#won-page", "#lose-page"];
 
 // Function for turning dealer's first face-up
 function flipDealersFirstCard() {
 	console.log("flipDealersFirstCard Working!!!!!")
 	$('#first-dealer-card').replaceWith(`<img class="card" src="./images/${game.dealer.hand[0].url}">`)
 }
-
-
-// Page IDs are stored
-const pagesArray = ["#home-page", "#bets-page", 
-"#hit-or-stand-page", "#won-page", "#lose-page"];
 
 // Make specific page not show in browser
 function removePage(pageIndex) {
@@ -260,6 +208,19 @@ function createPage(pageIndex) {
 	$(pagesArray[pageIndex]).css("display", "block");
 }
 
+// Take player to win page
+function moveToWinPage() {
+	removePage(2);
+	createPage(3);
+}
+
+// Take player to lose page
+function moveToLosePage() {
+	removePage(2);
+	createPage(3);
+}
+
+// EVENT LISTENERS
 
 $('#play-blackjack').on('click', () => {
 	removePage(0);

@@ -19,14 +19,6 @@ body {
 	display: block;
 }
 
-#blackjack {
-	display: flex;
-	justify-content: center;
-	min-height: 50px;
-	min-width: 50px;
-}
-
-
 #play-blackjack {
 	color: black;
 	border-radius: 4px;
@@ -103,8 +95,6 @@ body {
 	justify-content: center;
 }
 
-
-
 	/* -Buttons for Hit and Stand- */
 
 #hit {
@@ -123,6 +113,31 @@ body {
 	background: rgb(255, 215, 0);
 }
 
+/* ----WIN PAGE----*/
+
+
+#win-page {
+	display: none;
+}
+
+
+#play-blackjack {
+	color: black;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	background: rgb(255, 215, 0);
+}
+
+.winning {
+	display: flex;
+	justify-content: center;
+
+}
+
+#casino-image {
+	max-height: 300px;
+	max-width: 300px;
+}
 
 
 
