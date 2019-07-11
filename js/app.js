@@ -8,7 +8,7 @@ class Deck {
 	createDeck() {
 		const suits = ["Diamonds", "Hearts", "Clubs", "Spades"];
 		const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
-		const names = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queens', 'King'];
+		const names = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King'];
 		//console.log(this.deck)
 		for (let i = 0; i < suits.length; i++) {
 			for (let j = 0; j < values.length; j++) {
