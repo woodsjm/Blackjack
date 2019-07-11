@@ -4,8 +4,7 @@ body {
 }
 
 .overlay{
-    opacity:0.8;
-    background-color:#ccc;
+    opacity: 1.0;
     position:fixed;
     width:100%;
     height:100%;
@@ -14,17 +13,15 @@ body {
     z-index:1000;
 }
 
+#home-page {
+	display: block;
+}
+
 #blackjack {
 	display: flex;
 	justify-content: center;
 	min-height: 50px;
 	min-width: 50px;
-}
-
-
-.card {
-	width: 200px;
-	height: 330px;
 }
 
 
@@ -47,11 +44,33 @@ body {
 	max-width: 300px;
 }
 
+/* Place Bets Page */
+
 #bets-page {
-	display: block;
-	width: 100%;
-	height: 100%;
+	display: none;
 }
+
+#title {
+	display: flex;
+	justify-content: center;
+}
+
+/* Hit or Stand Page */
+
+#hit-or-stand-page {
+	display: none;
+}
+
+.card {
+	width: 200px;
+	height: 330px;
+}
+
+#computer-hand {
+	display: flex;
+	justify-content: center;
+}
+
 
 
 

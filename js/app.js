@@ -50,6 +50,7 @@ class Player {
 	calculateValueOfHand() {
 		let aceExists = false;
 		let sum = 0;
+		console.log(this.hand)
 		for (let i = 0; i < this.hand.length; i++) {
 			sum += this.hand[i].value;
 			if (this.hand[i].name === "Ace") {
@@ -61,6 +62,7 @@ class Player {
 				sum += 10;
 		}
 		this.value = sum;
+		game.checkHandsAtStart();
 		// console.log(this.value);
 		return this.value
 	}
@@ -242,37 +244,40 @@ class Game {
 
 const game = new Game();
 
-const removeFirstPage = () => {
-	$('#play-blackjack').hide();
-	$('#casino-image').hide();
-	$('#blackjack').hide();
-	$('.first-page').hide();
-	$('#first-title').hide();
+// Pages are stored
+const pagesArray = ["#home-page", "#bets-page", 
+"#hit-or-stand-page"];
+
+// Make specific page not show in browser
+const removePage = (pageIndex) => {
+	$(pagesArray[pageIndex]).css("display", "none");
 }
 
-const createBetsPage = () => {
-	$('#bets-page').css("display", "flex");
+// Make specific page show in browser
+const createPage = (pageIndex) => {
+	$(pagesArray[pageIndex]).css("display", "block");
 }
 
 
 $('#play-blackjack').on('click', () => {
-	removeFirstPage();
-	createBetsPage();
+	removePage(0);
+	createPage(1);
 });
 
-$('#hit').on('click', () => {
-	game.hit();
-	console.log(game.player.hand);
+$('#deal').on('click', () => {
+	removePage(1);
+	createPage(2);
+	game.deal();
+	console.log(game.deck);
 	game.player.hand.forEach(c => console.log(c))
 	console.log("player:",game.player.calculateValueOfHand())
 	game.dealer.hand.forEach(c => console.log(c))
 	console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 
-$('#deal').on('click', () => {
-	$('#deal').hide(500)
-	game.deal();
-	console.log(game.deck);
+$('#hit').on('click', () => {
+	game.hit();
+	console.log(game.player.hand);
 	game.player.hand.forEach(c => console.log(c))
 	console.log("player:",game.player.calculateValueOfHand())
 	game.dealer.hand.forEach(c => console.log(c))
