@@ -74,39 +74,29 @@ class Dealer extends Player {
 
 }
 
-class Bet {
-	constructor () {
-		this.pot = 0;
-		this.round = true;
-	}
-}
-
-
 
 class Game {
 	constructor() {
 		this.player = new Player();
 		this.dealer = new Dealer();
 		this.deck = new Deck();
-		this.bet = new Bet();
 	}
 
 	deal() {
 		// partially controls the functionality of the deal cards button
-		if (this.bet.round) {
-			this.bet.round = false;
-			//start play
-			this.deck.createDeck();
-			this.player.getCard(this.deck.dealCard());
-			$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
-			this.player.getCard(this.deck.dealCard());
-			$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
-			this.dealer.getCard(this.deck.dealCard());
-			$('#computer-hand').append(`<img class="card" src="./images/back.png">`)
-			this.dealer.getCard(this.deck.dealCard());
-			$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
-			this.checkHandsAtStart();
-		}
+
+
+		//start play
+		this.deck.createDeck();
+		this.player.getCard(this.deck.dealCard());
+		$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+		this.player.getCard(this.deck.dealCard());
+		$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+		this.dealer.getCard(this.deck.dealCard());
+		$('#computer-hand').append(`<img id="first-dealer-card" class="card" src="./images/back.png">`)
+		this.dealer.getCard(this.deck.dealCard());
+		$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+		this.checkHandsAtStart();
 	}
 
 	hit() {
@@ -154,7 +144,7 @@ class Game {
 			console.log('player WON');
 			this.clearTable();
 		} else if (this.player.value > this.dealer.value) {
-			this.dealerHits();
+			//POSSIBLE BUG--- this.dealerHits();
 			console.log('player WON');
 			this.clearTable();
 		} else if (this.dealer.value > this.player.value) {
@@ -178,10 +168,10 @@ class Game {
 		}
 	}
 	clearTable() {
+		flipDealersFirstCard();
 		this.player.resetPlayer();
 		this.dealer.resetPlayer();
 		this.deck.clearDeck();
-		this.bet.round = true;
 	}
 }
 
@@ -248,17 +238,25 @@ class Game {
 
 const game = new Game();
 
-// Pages are stored
+
+// Function for turning dealer's first face-up
+function flipDealersFirstCard() {
+	console.log("flipDealersFirstCard Working!!!!!")
+	$('#first-dealer-card').replaceWith(`<img class="card" src="./images/${game.dealer.hand[0].url}">`)
+}
+
+
+// Page IDs are stored
 const pagesArray = ["#home-page", "#bets-page", 
-"#hit-or-stand-page"];
+"#hit-or-stand-page", "#won-page", "#lose-page"];
 
 // Make specific page not show in browser
-const removePage = (pageIndex) => {
+function removePage(pageIndex) {
 	$(pagesArray[pageIndex]).css("display", "none");
 }
 
 // Make specific page show in browser
-const createPage = (pageIndex) => {
+function createPage(pageIndex) {
 	$(pagesArray[pageIndex]).css("display", "block");
 }
 
