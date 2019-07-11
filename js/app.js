@@ -253,6 +253,7 @@ $('#hit').on('click', () => {
 });
 
 $('#play').on('click', () => {
+	$('#play').hide(500)
 	game.play();
 	console.log(game.deck);
 	game.player.hand.forEach(c => console.log(c))
