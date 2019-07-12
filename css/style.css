@@ -48,6 +48,11 @@ body {
 	justify-content: center;
 }
 
+#bet-box {
+	display: flex;
+	justify-content: center;
+}
+
 /* CHIPS */
 
 .chips {
