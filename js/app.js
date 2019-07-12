@@ -177,11 +177,17 @@ class Game {
 			this.clearTableOnTie();
 		} else if (this.dealer.value === 21) {
 			console.log("Dealer WINS After First Deal");
-			this.clearTableOnLoss();
+			if (this.dealerCardFlipped === false) {
+				flipDealersFirstCard();
+			}
+			setTimeout(this.clearTableOnLoss, 1500);
 			
 		} else if (this.player.value === 21) {
 			console.log("PLAYER WON After First Deal");
-			this.clearTableOnWin();
+			if (this.dealerCardFlipped === false) {
+				flipDealersFirstCard();
+			}
+			setTimeout(this.clearTableOnWin, 1500);
 		}
 	}
 }
