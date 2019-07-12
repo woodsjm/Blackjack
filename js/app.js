@@ -80,6 +80,7 @@ class Dealer extends Player {
 class Game {
 	constructor() {
 		this.firstHand = true;
+		this.dealerCardFlipped = false;
 		this.player = new Player();
 		this.dealer = new Dealer();
 		this.deck = new Deck();
@@ -114,47 +115,76 @@ class Game {
 		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
 			console.log("player loses");
+			this.clearTableOnLoss();
+
 		} else if (this.player.value === 21) {
 			console.log("player wins");
+			this.clearTableOnWin();
 		}
 	}
 	dealerHits() {
 		while (this.dealer.value < 17 && this.dealer.value < this.player.value) {
 			this.dealer.getCard(this.deck.dealCard());
-			$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+			$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		}
 		if (this.dealer.value > 21) {
 			console.log("Dealer Loses");
+			this.clearTableOnWin();
 		} else if (this.dealer.value === this.player.value) {
 			console.log("Tie, but dealer wins");
+			this.clearTableOnLoss();
 		} else if (this.dealer.value > this.player.value) {
 			console.log("Dealer Wins");
+			this.clearTableOnLoss();
 		} else if (this.dealer.value < this.player.value) {
 			console.log("Player Wins")
+			this.clearTableOnWin();
 		}
 	}
 	stand() {
+		flipDealersFirstCard();
+		this.dealerCardFlipped = true;
 		this.dealerHits();
 	}
-	checkHands() {	
-		 
+	clearTableOnTie() {
+		if (this.dealerCardFlipped === false) {
+			flipDealersFirstCard();
+		}
+		this.player.resetPlayer();
+		this.dealer.resetPlayer();
+		this.deck.clearDeck();
+		this.deal();
 	}
-	clearTable() {
-		flipDealersFirstCard();
-		//this.player.resetPlayer();
-		//this.dealer.resetPlayer();
-		//this.deck.clearDeck();
+	clearTableOnLoss() {
+		if (this.dealerCardFlipped === false) {
+			flipDealersFirstCard();
+		}
+		this.player.resetPlayer();
+		this.dealer.resetPlayer();
+		this.deck.clearDeck();
+		moveToLosePage();
+
+	}
+	clearTableOnWin() {
+		if (this.dealerCardFlipped === false) {
+			flipDealersFirstCard();
+		}
+		this.player.resetPlayer();
+		this.dealer.resetPlayer();
+		this.deck.clearDeck();
+		moveToWinPage();
 	}
 	initialCheckHands() {
 		if (this.player.value === 21 && this.dealer.value === 21) {
 			console.log("Tie! Both have Blackjacks! Take chips back");
-
+			this.clearTableOnTie();
 		} else if (this.dealer.value === 21) {
 			console.log("Dealer WINS After First Deal");
-			
+			this.clearTableOnLoss();
 			
 		} else if (this.player.value === 21) {
 			console.log("PLAYER WON After First Deal");
+			this.clearTableOnWin();
 		}
 	}
 }
@@ -191,7 +221,7 @@ function moveToWinPage() {
 // Take player to lose page
 function moveToLosePage() {
 	removePage(2);
-	createPage(3);
+	createPage(4);
 }
 
 // EVENT LISTENERS

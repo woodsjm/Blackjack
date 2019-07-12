@@ -116,7 +116,33 @@ body {
 /* ----WIN PAGE----*/
 
 
-#win-page {
+#won-page {
+	display: none;
+}
+
+
+#play-blackjack {
+	color: black;
+	border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	background: rgb(255, 215, 0);
+}
+
+.winning {
+	display: flex;
+	justify-content: center;
+
+}
+
+#casino-image {
+	max-height: 300px;
+	max-width: 300px;
+}
+
+
+/* ----LOSE PAGE----*/
+
+#lose-page {
 	display: none;
 }
 
