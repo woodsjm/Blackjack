@@ -132,25 +132,25 @@ class Game {
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 1500);
+			setTimeout(this.clearTableOnWin, 1300);
 		} else if (this.dealer.value === this.player.value) {
 			console.log("Tie, but dealer wins");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 1500);
+			setTimeout(this.clearTableOnLoss, 1300);
 		} else if (this.dealer.value > this.player.value) {
 			console.log("Dealer Wins");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 1500);
+			setTimeout(this.clearTableOnLoss, 1300);
 		} else if (this.dealer.value < this.player.value) {
 			console.log("Player Wins")
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 1500);
+			setTimeout(this.clearTableOnWin, 1300);
 		}
 	}
 	stand() {
@@ -180,14 +180,14 @@ class Game {
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 1500);
+			setTimeout(this.clearTableOnLoss, 1300);
 			
 		} else if (this.player.value === 21) {
 			console.log("PLAYER WON After First Deal");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 1500);
+			setTimeout(this.clearTableOnWin, 1300);
 		}
 	}
 }
