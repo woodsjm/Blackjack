@@ -285,12 +285,12 @@ $('.play-blackjack').on('click', () => {
 
 $('#100').on('click', () => {
 	betAmount += 100;
-	$('.bet-amount').text(`$${betAmount}`);
+	$('.bet-amount').text(`Bet Amount: $${betAmount}`);
 });
 
 $('#500').on('click', () => {
 	betAmount += 500;
-	$('.bet-amount').text(`$${betAmount}`);
+	$('.bet-amount').text(`Bet Amount: $${betAmount}`);
 });
 
 /*$('#1000').on('click', () => {
