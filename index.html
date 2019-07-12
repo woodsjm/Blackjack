@@ -13,9 +13,9 @@
 
 	<!-- Home Page -->
 
-<!-- <div class="overlay" id="home-page">
+<div class="overlay" id="home-page">
 
-	<<div class="first-page">
+	<div class="first-page">
 
 		<h1 id="first-title">Welcome to MidWest Blackjack</h1>
 
@@ -33,7 +33,7 @@
 
 	</div>
 
-</div> -->
+</div>
 
 	<!--  Place Bets Page -->
 
@@ -42,8 +42,19 @@
 	<div id="title">
 
 		<h1>Place Your Bets</h1>
-	
 	</div>
+
+	<div class="chips">
+		<div class="chip" id="100">100</div>
+		<div class="chip" id="500">500</div>
+		<div class="chip" id="1000">1000</div>
+	</div>
+
+
+	<div> Bet amount</div>
+	<p class="bet-amount"> 0 </p> 
+	
+	
 
 
 
@@ -59,8 +70,13 @@
 	<!-- Hit or Stand Page -->
 
 <div class="overlay" id="hit-or-stand-page">
+	<div>
+			<div> Bet amount</div>
+	<p class="bet-amount"> 0 </p> 
+		
+		<div id="computer-hand"></div>
+	</div>
 
-	<div id="computer-hand"></div>
 
 	<div id="player-hand"></div>
 
@@ -92,9 +108,11 @@
 
 	<div class="winning">
 
-		<button id="play-blackjack">Play Again?</button>
+		<button class="play-blackjack">Play Again?</button>
 
 	</div>
+
+
 
 </div>
 
@@ -105,7 +123,7 @@
 
 	<div class="losing">
 
-		<h1 id="win-title">Congrats! You won!</h1>
+		<h1 id="lose-title">Congrats! You lose!</h1>
 
 	</div>
  
@@ -117,7 +135,7 @@
 
 	<div class="losing">
 
-		<button id="play-blackjack">Play Again?</button>
+		<button class="play-blackjack">Play Again?</button>
 
 	</div>
 

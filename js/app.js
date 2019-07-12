@@ -99,7 +99,7 @@ class Game {
 		this.dealer.getCard(this.deck.dealCard());
 		$('#computer-hand').append(`<img id="first-dealer-card" class="card" src="./images/back.png">`)
 		this.dealer.getCard(this.deck.dealCard());
-		$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
+		$('#computer-hand').append(`<img class="card" src="./images/${this.dealer.hand[this.dealer.hand.length - 1].url}">`)
 		if (this.firstHand) {
 			this.initialCheckHands();
 		} else {
@@ -123,22 +123,34 @@ class Game {
 		}
 	}
 	dealerHits() {
-		while (this.dealer.value < 17 && this.dealer.value < this.player.value) {
+		while (this.dealer.value < 17) {
 			this.dealer.getCard(this.deck.dealCard());
 			$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		}
 		if (this.dealer.value > 21) {
 			console.log("Dealer Loses");
-			this.clearTableOnWin();
+			if (this.dealerCardFlipped === false) {
+				flipDealersFirstCard();
+			}
+			setTimeout(this.clearTableOnWin, 1500);
 		} else if (this.dealer.value === this.player.value) {
 			console.log("Tie, but dealer wins");
-			this.clearTableOnLoss();
+			if (this.dealerCardFlipped === false) {
+				flipDealersFirstCard();
+			}
+			setTimeout(this.clearTableOnLoss, 1500);
 		} else if (this.dealer.value > this.player.value) {
 			console.log("Dealer Wins");
-			this.clearTableOnLoss();
+			if (this.dealerCardFlipped === false) {
+				flipDealersFirstCard();
+			}
+			setTimeout(this.clearTableOnLoss, 1500);
 		} else if (this.dealer.value < this.player.value) {
 			console.log("Player Wins")
-			this.clearTableOnWin();
+			if (this.dealerCardFlipped === false) {
+				flipDealersFirstCard();
+			}
+			setTimeout(this.clearTableOnWin, 1500);
 		}
 	}
 	stand() {
@@ -147,31 +159,16 @@ class Game {
 		this.dealerHits();
 	}
 	clearTableOnTie() {
-		if (this.dealerCardFlipped === false) {
-			flipDealersFirstCard();
-		}
-		this.player.resetPlayer();
-		this.dealer.resetPlayer();
-		this.deck.clearDeck();
+		game = new Game();
 		this.deal();
 	}
 	clearTableOnLoss() {
-		if (this.dealerCardFlipped === false) {
-			flipDealersFirstCard();
-		}
-		this.player.resetPlayer();
-		this.dealer.resetPlayer();
-		this.deck.clearDeck();
+		$('#lose-title').text(`Sorry, You lost $${betAmount}!`);
 		moveToLosePage();
 
 	}
 	clearTableOnWin() {
-		if (this.dealerCardFlipped === false) {
-			flipDealersFirstCard();
-		}
-		this.player.resetPlayer();
-		this.dealer.resetPlayer();
-		this.deck.clearDeck();
+		$('#win-title').text(`Congrats! You won $${betAmount}!`);
 		moveToWinPage();
 	}
 	initialCheckHands() {
@@ -190,7 +187,9 @@ class Game {
 }
 
 // New game initialized
-const game = new Game();
+let game = new Game();
+
+let betAmount = 0;
 
 // Page IDs stored in an array
 const pagesArray = ["#home-page", "#bets-page", 
@@ -260,3 +259,28 @@ $('#stand').on('click', () => {
 	console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 
+$('.play-blackjack').on('click', () => {
+	removePage(3);
+	removePage(4);
+	document.getElementById('computer-hand').innerHTML=""
+	document.getElementById('player-hand').innerHTML=""
+	betAmount = 0;
+	$('.bet-amount').text(betAmount);
+	game = new Game();
+	createPage(1);
+});
+
+$('#100').on('click', () => {
+	betAmount += 100;
+	$('.bet-amount').text(betAmount);
+});
+
+$('#500').on('click', () => {
+	betAmount += 500;
+	$('.bet-amount').text(betAmount);
+});
+
+$('#1000').on('click', () => {
+	betAmount += 1000;
+	$('.bet-amount').text(betAmount);
+});
