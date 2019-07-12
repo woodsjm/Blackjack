@@ -1,5 +1,6 @@
 console.log("Blackjack Started");
 
+// ****	Class for deck of cards **** 
 
 class Deck {
 	constructor() {
@@ -29,6 +30,9 @@ class Deck {
 		return removedCard;
 	}
 }
+
+// **** Two classes to represent player and dealer. The second class (representing the dealer) extends
+// **** the first. 
 
 class Player {
 	constructor() {
@@ -76,6 +80,8 @@ class Dealer extends Player {
 
 }
 
+
+// This class represents the blackjack game
 
 class Game {
 	constructor() {
@@ -195,6 +201,7 @@ class Game {
 // New game initialized
 let game = new Game();
 
+// Amount bet will always be zero at the beginning of a game
 let betAmount = 0;
 
 // Page IDs stored in an array
