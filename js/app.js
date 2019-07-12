@@ -293,7 +293,7 @@ $('#500').on('click', () => {
 	$('.bet-amount').text(betAmount);
 });
 
-$('#1000').on('click', () => {
+/*$('#1000').on('click', () => {
 	betAmount += 1000;
 	$('.bet-amount').text(betAmount);
-});
+});*/
