@@ -138,25 +138,25 @@ class Game {
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 1300);
+			setTimeout(this.clearTableOnWin, 2700);
 		} else if (this.dealer.value === this.player.value) {
 			console.log("Tie, but dealer wins");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 1300);
+			setTimeout(this.clearTableOnLoss, 2700);
 		} else if (this.dealer.value > this.player.value) {
 			console.log("Dealer Wins");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 1300);
+			setTimeout(this.clearTableOnLoss, 2700);
 		} else if (this.dealer.value < this.player.value) {
 			console.log("Player Wins")
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 1300);
+			setTimeout(this.clearTableOnWin, 2700);
 		}
 	}
 	stand() {
@@ -186,14 +186,14 @@ class Game {
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 1300);
+			setTimeout(this.clearTableOnLoss, 2700);
 			
 		} else if (this.player.value === 21) {
 			console.log("PLAYER WON After First Deal");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 1300);
+			setTimeout(this.clearTableOnWin, 2700);
 		}
 	}
 }
@@ -285,12 +285,12 @@ $('.play-blackjack').on('click', () => {
 
 $('#100').on('click', () => {
 	betAmount += 100;
-	$('.bet-amount').text(betAmount);
+	$('.bet-amount').text(`$${betAmount}`);
 });
 
 $('#500').on('click', () => {
 	betAmount += 500;
-	$('.bet-amount').text(betAmount);
+	$('.bet-amount').text(`$${betAmount}`);
 });
 
 /*$('#1000').on('click', () => {
