@@ -1,7 +1,6 @@
-console.log("Blackjack Started");
 
-// ****	Class for deck of cards **** 
 
+// Class for deck of cards //
 class Deck {
 	constructor() {
 		this.deck = []
@@ -31,9 +30,8 @@ class Deck {
 	}
 }
 
-// **** Two classes to represent player and dealer. The second class (representing the dealer) extends
-// **** the first. 
-
+// Two classes to represent player and dealer. //
+// The second class (representing the dealer) extends the first. //
 class Player {
 	constructor() {
 		this.hand = [];
@@ -46,8 +44,8 @@ class Player {
 		this.wins = 0;
 	}
 	getCard(card) {
-		// move random card from initalized Deck class and
-		// push it into Player or Dealer hand
+		// Move random card from initalized Deck class and
+		// push it into Player or Dealer hand.
 		this.hand.push(card);
 		this.calculateValueOfHand();
 	}
@@ -73,16 +71,13 @@ class Player {
 	}
 }
 
-
 class Dealer extends Player {
-	// dealer inherits two properties and three methods from
-	// Player class
+
 
 }
 
 
-// This class represents the blackjack game
-
+// The blackjack game //
 class Game {
 	constructor() {
 		this.firstHand = true;
@@ -91,12 +86,9 @@ class Game {
 		this.dealer = new Dealer();
 		this.deck = new Deck();
 	}
-
+  
 	deal() {
-		// partially controls the functionality of the deal cards button
-
-
-		//start play
+		// Start play //
 		this.deck.createDeck();
 		this.player.getCard(this.deck.dealCard());
 		$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
@@ -115,17 +107,17 @@ class Game {
 	}
 
 	hit() {
-		//give player an additional card
+		// Give player an additional card //
 		this.player.getCard(this.deck.dealCard());
 		$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
 			console.log("player loses");
-			this.clearTableOnLoss();
+			setTimeout(this.clearTableOnLoss, 2000);
 
 		} else if (this.player.value === 21) {
 			console.log("player wins");
-			this.clearTableOnWin();
+			setTimeout(this.clearTableOnWin, 2000);
 		}
 	}
 	dealerHits() {
@@ -138,25 +130,28 @@ class Game {
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 2700);
+			setTimeout(this.clearTableOnWin, 3500);
+
 		} else if (this.dealer.value === this.player.value) {
 			console.log("Tie, but dealer wins");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 2700);
+			setTimeout(this.clearTableOnLoss, 3500);
+
 		} else if (this.dealer.value > this.player.value) {
 			console.log("Dealer Wins");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 2700);
+			setTimeout(this.clearTableOnLoss, 3500);
+
 		} else if (this.dealer.value < this.player.value) {
 			console.log("Player Wins")
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 2700);
+			setTimeout(this.clearTableOnWin, 3500);
 		}
 	}
 	stand() {
@@ -180,64 +175,65 @@ class Game {
 	initialCheckHands() {
 		if (this.player.value === 21 && this.dealer.value === 21) {
 			console.log("Tie! Both have Blackjacks! Take chips back");
-			this.clearTableOnTie();
+			setTimeout(this.clearTableOnTie, 3500);
+			
+
 		} else if (this.dealer.value === 21) {
 			console.log("Dealer WINS After First Deal");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 2700);
+			setTimeout(this.clearTableOnLoss, 3500);
 			
 		} else if (this.player.value === 21) {
 			console.log("PLAYER WON After First Deal");
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnWin, 2700);
+			setTimeout(this.clearTableOnWin, 3500);
 		}
 	}
 }
 
-// New game initialized
+// New game initialized //
 let game = new Game();
 
-// Amount bet will always be zero at the beginning of a game
+// Amount bet is always zero at the beginning of a game. //
 let betAmount = 0;
 
-// Page IDs stored in an array
+// Page IDs //
 const pagesArray = ["#home-page", "#bets-page", 
 "#hit-or-stand-page", "#won-page", "#lose-page"];
 
-// Function for turning dealer's first face-up
+// Turn dealer's first card face-up //
 function flipDealersFirstCard() {
 	console.log("flipDealersFirstCard Working!!!!!")
 	$('#first-dealer-card').replaceWith(`<img class="card" src="./images/${game.dealer.hand[0].url}">`)
 }
 
-// Make specific page not show in browser
+// Make specific page not show in browser //
 function removePage(pageIndex) {
 	$(pagesArray[pageIndex]).css("display", "none");
 }
 
-// Make specific page show in browser
+// Make specific page show in browser //
 function createPage(pageIndex) {
 	$(pagesArray[pageIndex]).css("display", "block");
 }
 
-// Take player to win page
+// Take player to win page //
 function moveToWinPage() {
 	removePage(2);
 	createPage(3);
 }
 
-// Take player to lose page
+// Take player to lose page //
 function moveToLosePage() {
 	removePage(2);
 	createPage(4);
 }
 
-// EVENT LISTENERS
-
+// EVENT LISTENERS //
 $('#play-blackjack').on('click', () => {
 	removePage(0);
 	createPage(1);
@@ -293,7 +289,4 @@ $('#500').on('click', () => {
 	$('.bet-amount').text(`Bet Amount: $${betAmount}`);
 });
 
-/*$('#1000').on('click', () => {
-	betAmount += 1000;
-	$('.bet-amount').text(betAmount);
-});*/
+
