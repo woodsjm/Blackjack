@@ -80,7 +80,6 @@ class Dealer extends Player {
 // The blackjack game //
 class Game {
 	constructor() {
-		this.firstHand = true;
 		this.dealerCardFlipped = false;
 		this.player = new Player();
 		this.dealer = new Dealer();
@@ -98,12 +97,7 @@ class Game {
 		$('#computer-hand').append(`<img id="first-dealer-card" class="card" src="./images/back.png">`)
 		this.dealer.getCard(this.deck.dealCard());
 		$('#computer-hand').append(`<img class="card" src="./images/${this.dealer.hand[this.dealer.hand.length - 1].url}">`)
-		if (this.firstHand) {
-			this.initialCheckHands();
-		} else {
-			this.checkHands();
-		}
-		this.firstHand = false;
+		this.initialCheckHands()
 	}
 
 	hit() {
