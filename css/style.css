@@ -195,13 +195,15 @@ body {
 
 #hit-or-stand {
 	display: flex;
-	width: 75px;
+	justify-content: center;
 }
 
 	/* -Buttons for Hit and Stand- */
 
 #hit-or-stand-button-box {
 	display: flex;
+	width: 400px;
+	justify-content: space-between;
 }
 
 #hit {
@@ -220,14 +222,13 @@ body {
 	-webkit-border-radius:6px;
 	border-radius:6px;
 	border:1px solid #ffaa22;
-	display:inline-block;
 	cursor:pointer;
 	color:#333333;
 	font-family:Arial;
 	font-size:28px;
 	font-weight:bold;
+	min-width: 150px;
 	padding:16px 50px;
-	margin: 5px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
 }
@@ -263,14 +264,12 @@ body {
 	-webkit-border-radius:6px;
 	border-radius:6px;
 	border:1px solid #ffaa22;
-	display:inline-block;
 	cursor:pointer;
 	color:#333333;
 	font-family:Arial;
 	font-size:28px;
 	font-weight:bold;
 	padding:16px 50px;
-	marging: 5px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #ffee66;
 }
