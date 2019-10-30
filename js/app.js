@@ -1,6 +1,6 @@
 
 
-// Class for deck of cards //
+// Standard deck of cards //
 class Deck {
 	constructor() {
 		this.deck = []
@@ -9,18 +9,13 @@ class Deck {
 		const suits = ["Diamonds", "Hearts", "Clubs", "Spades"];
 		const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10];
 		const names = ['Ace', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack', 'Queen', 'King'];
-		//console.log(this.deck)
-		for (let i = 0; i < suits.length; i++) {
-			for (let j = 0; j < values.length; j++) {
-				// 52 card objects with 3 keys (suit, value, and name)
-				// and need to make name and suits line up so img location can
-				// be added
-				this.deck.push({ suit: suits[i], value: values[j], name: names[j], url: names[j] + suits[i][0] + '.png' });  
-			}
-		}
+		suits.forEach(s => {
+			values.forEach((v, idx) => {
+				this.deck.push({ suit: s, value: v, name: names[idx], url: names[idx] + s[0] + '.png' });
+			})
+		})
 	}
 	clearDeck() {
-		// set deck to an empty deck
 		this.deck = [];
 	}
 	dealCard() {
@@ -30,8 +25,7 @@ class Deck {
 	}
 }
 
-// Two classes to represent player and dealer. //
-// The second class (representing the dealer) extends the first. //
+// The Player and Dealer. //
 class Player {
 	constructor() {
 		this.hand = [];
@@ -44,10 +38,10 @@ class Player {
 		this.wins = 0;
 	}
 	getCard(card) {
-		// Move random card from initalized Deck class and
-		// push it into Player or Dealer hand.
+		// Deal card to Player or Dealer.
 		this.hand.push(card);
 		this.calculateValueOfHand();
+		
 	}
 	calculateValueOfHand() {
 		let aceExists = false;
@@ -77,7 +71,7 @@ class Dealer extends Player {
 }
 
 
-// The blackjack game //
+// The Game //
 class Game {
 	constructor() {
 		this.dealerCardFlipped = false;
@@ -101,16 +95,13 @@ class Game {
 	}
 
 	hit() {
-		// Give player an additional card //
+		// Deal additional card to player//
 		this.player.getCard(this.deck.dealCard());
 		$('#player-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
-		console.log('player hand value', this.player.value);
 		if (this.player.value > 21) {
-			console.log("player loses");
 			setTimeout(this.clearTableOnLoss, 2000);
 
 		} else if (this.player.value === 21) {
-			console.log("player wins");
 			setTimeout(this.clearTableOnWin, 2000);
 		}
 	}
@@ -120,28 +111,28 @@ class Game {
 			$('#computer-hand').append(`<img class="card" src="./images/${this.player.hand[this.player.hand.length - 1].url}">`)
 		}
 		if (this.dealer.value > 21) {
-			console.log("Dealer Loses");
+			
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
 			setTimeout(this.clearTableOnWin, 3500);
 
 		} else if (this.dealer.value === this.player.value) {
-			console.log("Tie, but dealer wins");
+			
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
-			setTimeout(this.clearTableOnLoss, 3500);
+			setTimeout(this.clearTableOnTie, 3500);
 
 		} else if (this.dealer.value > this.player.value) {
-			console.log("Dealer Wins");
+			
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
 			setTimeout(this.clearTableOnLoss, 3500);
 
 		} else if (this.dealer.value < this.player.value) {
-			console.log("Player Wins")
+			
 			if (this.dealerCardFlipped === false) {
 				flipDealersFirstCard();
 			}
@@ -154,8 +145,9 @@ class Game {
 		this.dealerHits();
 	}
 	clearTableOnTie() {
-		game = new Game();
-		this.deal();
+		$('#lose-title').text(`You tied! Your original bet ($${betAmount}) is returned.`);
+		moveToLosePage();
+		
 	}
 	clearTableOnLoss() {
 		$('#lose-title').text(`Sorry, You lost $${betAmount}!`);
@@ -168,20 +160,22 @@ class Game {
 	}
 	initialCheckHands() {
 		if (this.player.value === 21 && this.dealer.value === 21) {
-			console.log("Tie! Both have Blackjacks! Take chips back");
+			
 			setTimeout(this.clearTableOnTie, 3500);
 			
 
 		} else if (this.dealer.value === 21) {
-			console.log("Dealer WINS After First Deal");
+			
 			if (this.dealerCardFlipped === false) {
+				
 				flipDealersFirstCard();
 			}
 			setTimeout(this.clearTableOnLoss, 3500);
 			
 		} else if (this.player.value === 21) {
-			console.log("PLAYER WON After First Deal");
+			
 			if (this.dealerCardFlipped === false) {
+				
 				flipDealersFirstCard();
 			}
 			setTimeout(this.clearTableOnWin, 3500);
@@ -197,11 +191,10 @@ let betAmount = 0;
 
 // Page IDs //
 const pagesArray = ["#home-page", "#bets-page", 
-"#hit-or-stand-page", "#won-page", "#lose-page"];
+"#hit-or-stand-page", "#won-page", "#lose-page", "tie-page"];
 
 // Turn dealer's first card face-up //
 function flipDealersFirstCard() {
-	console.log("flipDealersFirstCard Working!!!!!")
 	$('#first-dealer-card').replaceWith(`<img class="card" src="./images/${game.dealer.hand[0].url}">`)
 }
 
@@ -237,29 +230,28 @@ $('#deal').on('click', () => {
 	removePage(1);
 	createPage(2);
 	game.deal();
-	console.log(game.deck);
+	//console.log(game.deck);
 	game.player.hand.forEach(c => console.log(c))
-	console.log("player:",game.player.calculateValueOfHand())
+	//console.log("player:",game.player.calculateValueOfHand())
 	game.dealer.hand.forEach(c => console.log(c))
-	console.log("dealer:",game.dealer.calculateValueOfHand())
+	//console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 
 $('#hit').on('click', () => {
 	game.hit();
-	console.log(game.player.hand);
+	//console.log(game.player.hand);
 	game.player.hand.forEach(c => console.log(c))
-	console.log("player:",game.player.calculateValueOfHand())
+	//console.log("player:",game.player.calculateValueOfHand())
 	game.dealer.hand.forEach(c => console.log(c))
-	console.log("dealer:",game.dealer.calculateValueOfHand())
+	//console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 
 $('#stand').on('click', () => { 
-	console.log('stand');
 	game.stand();
 	game.player.hand.forEach(c => console.log(c))
-	console.log("player:",game.player.calculateValueOfHand())
+	//console.log("player:",game.player.calculateValueOfHand())
 	game.dealer.hand.forEach(c => console.log(c))
-	console.log("dealer:",game.dealer.calculateValueOfHand())
+	//console.log("dealer:",game.dealer.calculateValueOfHand())
 });
 
 $('.play-blackjack').on('click', () => {
