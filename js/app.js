@@ -49,7 +49,6 @@ class Player {
 		for (let i = 0; i < this.hand.length; i++) {
 			sum += this.hand[i].value;
 			if (this.hand[i].name === "Ace") {
-				// if true flip boole
 				aceExists = true;
 			}
 		}
